@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CUTIE STREET 東京遠征 SNSスポット候補 2026</title>
+  <style>
+    :root {
+      --ink: #172026;
+      --muted: #60717c;
+      --paper: #f7faf8;
+      --panel: #ffffff;
+      --line: #d8e1de;
+      --rose: #e84862;
+      --teal: #087c84;
+      --green: #2d8a5f;
+      --amber: #e39a27;
+      --blue: #4764d8;
+      --shadow: 0 14px 38px rgba(17, 32, 38, .12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; }
+
+    .hero {
+      min-height: 430px;
+      display: grid;
+      align-items: end;
+      position: relative;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(12, 18, 24, .88), rgba(12, 18, 24, .46), rgba(12, 18, 24, .16)),
+        url("assets/tokyo-buzz-gourmet-hero.png") center / cover;
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 58px 0 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+      color: #ddf8f5;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin: 0;
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 18px 0 0;
+      font-size: 17px;
+      color: rgba(255,255,255,.9);
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    .event-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: -24px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      border: 1px solid rgba(216,225,222,.85);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      background: var(--line);
+    }
+
+    .audit-note {
+      margin: 20px 0 0;
+      padding: 16px;
+      border: 1px solid rgba(232,72,98,.32);
+      border-radius: 8px;
+      background: #fff7f8;
+      color: #442329;
+    }
+
+    .audit-note h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .audit-note p {
+      margin: 0 0 10px;
+      color: #674047;
+      font-size: 14px;
+    }
+
+    .audit-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .audit-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid rgba(232,72,98,.25);
+      border-radius: 8px;
+      background: #fff;
+      color: #9b2538;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .event-cell {
+      min-height: 104px;
+      padding: 18px;
+      background: var(--panel);
+    }
+
+    .event-cell b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .event-cell span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      margin: 28px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(247,250,248,.92);
+      backdrop-filter: blur(14px);
+    }
+
+    .toolbar-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search {
+      width: 100%;
+      min-height: 44px;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .count {
+      white-space: nowrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .filter {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      min-height: 38px;
+      padding: 8px 11px;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .filter.active {
+      border-color: transparent;
+      color: #fff;
+      background: var(--teal);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin: 32px 0 16px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 640px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding-bottom: 48px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 8px 22px rgba(17, 32, 38, .07);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.28;
+      letter-spacing: 0;
+    }
+
+    .fit {
+      flex: 0 0 auto;
+      padding: 3px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .fit.both { background: var(--green); }
+    .fit.june { background: var(--teal); }
+    .fit.august { background: var(--rose); }
+    .fit.next { background: var(--amber); color: #1f1a0d; }
+    .fit.hold { background: #78828a; }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 7px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: #fbfdfc;
+      font-size: 12px;
+    }
+
+    .tag.mark {
+      border-color: rgba(232,72,98,.35);
+      color: var(--rose);
+      background: rgba(232,72,98,.08);
+      font-weight: 700;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .card .note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 12px;
+    }
+
+    .links a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 36px;
+      padding: 7px 8px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .links .tiktok { background: #16191d; }
+    .links .insta { background: #c13584; }
+    .links .x { background: #1d2730; }
+
+    .source-box {
+      margin: 0 auto 52px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-box h2 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 18px;
+    }
+
+    .source-box ul {
+      margin: 8px 0 0;
+      padding-left: 1.2em;
+    }
+
+    .empty {
+      display: none;
+      padding: 36px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .event-strip { grid-template-columns: repeat(2, 1fr); }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      .hero { min-height: 360px; }
+      .hero-inner { width: min(100% - 24px, 1180px); padding-bottom: 32px; }
+      .event-strip { grid-template-columns: 1fr; margin-top: 14px; }
+      .toolbar { position: static; }
+      .toolbar-row { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 8px; }
+      .grid { grid-template-columns: 1fr; }
+      .card-top { display: block; }
+      .fit { display: inline-flex; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">TikTok / Instagram / X 再検索リンク付き</div>
+      <h1>CUTIE STREET 東京遠征スポット候補</h1>
+      <p>6月の有明アリーナ遠征と、8月25日・26日の日本武道館2DAYSを両方考慮した候補集。まずは大量に見て、行きたいところを選ぶための一覧です。</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="event-strip" aria-label="遠征メモ">
+      <div class="event-cell"><b>6/16(火) 有明 Day1</b><span>OPEN 16:00 / START 18:00。東京駅・丸の内、有明、ホテル潮見の動線を重視。</span></div>
+      <div class="event-cell"><b>6/17(水) 有明 Day2</b><span>OPEN 15:30 / START 17:30。みそきん池袋、原宿/表参道、豊洲/有明が主軸。</span></div>
+      <div class="event-cell"><b>8/25(火) 武道館 Day1</b><span>OPEN 16:30 / START 18:00。九段下・神保町・水道橋・飯田橋を厚めに。</span></div>
+      <div class="event-cell"><b>8/26(水) 武道館 Day2</b><span>OPEN 15:30 / START 17:00。暑さ対策として駅近・座れる・涼める候補を優先。</span></div>
+    </section>
+
+    <section class="audit-note" aria-label="SNS調査ステータス">
+      <h2>SNS調査ステータス</h2>
+      <p>このHTMLの初版は、実SNS投稿を大量取得した完成版ではなく、既存しおり・公開Web情報・候補リストにTikTok/Instagram/Xの再検索リンクを付けた候補版です。以下は公開Web検索で確認できた実SNSリンク/投稿リンクの一部で、今後の本調査では各カードの再検索リンクを実投稿URLへ差し替えます。</p>
+      <div class="audit-links">
+        <a href="https://www.instagram.com/glitch_coffee/" target="_blank" rel="noreferrer">GLITCH Instagram</a>
+        <a href="https://www.instagram.com/otonaricoffee_shop/" target="_blank" rel="noreferrer">オトナリ珈琲 Instagram</a>
+        <a href="https://www.instagram.com/age3_harajuku/" target="_blank" rel="noreferrer">Age.3×Q Instagram</a>
+        <a href="https://www.instagram.com/chavaty_japan/" target="_blank" rel="noreferrer">CHAVATY Instagram</a>
+        <a href="https://www.instagram.com/thefrontroom_marunouchi/" target="_blank" rel="noreferrer">THE FRONT ROOM Instagram</a>
+        <a href="https://www.tiktok.com/@muni_gurume_japan/video/7404780520208420113" target="_blank" rel="noreferrer">THE FRONT ROOM TikTok投稿例</a>
+      </div>
+    </section>
+
+    <section class="toolbar" aria-label="フィルター">
+      <div class="toolbar-row">
+        <input id="search" class="search" type="search" placeholder="店名・エリア・ジャンル・メモで検索">
+        <div id="count" class="count"></div>
+      </div>
+      <div id="filters" class="filters"></div>
+    </section>
+
+    <section class="section-head">
+      <div>
+        <h2>候補一覧</h2>
+        <p>カード内のSNSボタンは投稿固定URLではなく、各店名でTikTok/Instagram/Xを再検索する導線です。SNSで直接投稿リンクを拾えた店は、後からこのHTMLに差し替えやすい構造にしています。</p>
+      </div>
+    </section>
+
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="empty">条件に合う候補がありません。フィルターか検索語を少しゆるめてください。</div>
+
+    <section class="source-box">
+      <h2>確認メモ</h2>
+      <p>この一覧は、既存の旅行しおり、既存の東京バズグルメページ、公開Web検索、SNS再検索導線を統合した初期候補です。営業日・予約・混雑・閉店/移転は出発前に必ず公式/SNSで再確認してください。</p>
+      <ul>
+        <li><a href="cutie-street-tokyo-2026-06.html">既存しおり: CUTIE STREET 東京遠征しおり</a></li>
+        <li><a href="tokyo-buzz-gourmet-recommendations.html">既存候補: 東京バズグルメ保存版</a></li>
+        <li><a href="https://cutiestreet.asobisystem.com/live_information/detail/33046">CUTIE STREET 2nd ANNIVERSARY LIVE 2026 Day1 公式</a></li>
+        <li><a href="https://cutiestreet.asobisystem.com/live_information/detail/33047">CUTIE STREET 2nd ANNIVERSARY LIVE 2026 Day2 公式</a></li>
+        <li><a href="https://www.nipponbudokan.or.jp/">日本武道館 公式アクセス</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const filterDefs = [
+      ["budokan", "武道館前後"],
+      ["ariake", "有明前後"],
+      ["harajuku", "原宿/表参道"],
+      ["ikebukuro", "池袋"],
+      ["tokyo", "東京駅"],
+      ["akiba", "秋葉原"],
+      ["cafe", "カフェ"],
+      ["sweets", "スイーツ"],
+      ["food", "食事"],
+      ["rest", "観光/休憩"],
+    ];
+
+    const spots = [
+      s("GLITCH COFFEE & ROASTERS", "神保町", "スペシャルティコーヒー", "8月向き", "budokan cafe", "九段下からも使いやすい神保町のコーヒー名店。ライブ前の気分を整える一杯向き。", "人気店なのでピークは待ち時間を見たい。"),
+      s("DIXANS 水道橋", "水道橋", "カフェ/プリン", "8月向き", "budokan cafe sweets", "SNSで厚切りトーストやプリン文脈が強い水道橋カフェ。武道館前の涼み枠。", "席数と混雑は当日確認。"),
+      s("オトナリ珈琲", "神保町/水道橋", "カフェ/プリン", "8月向き", "budokan cafe sweets", "プリンやラテ系でSNS再検索しやすい。水道橋・神保町どちらからも候補。", "売り切れと営業時間を確認。"),
+      s("CAFÉ 33", "北の丸公園", "カフェ/休憩", "8月向き", "budokan cafe rest", "武道館のすぐ近くで、暑い日の入場前に一息つける現実枠。", "イベント日は混雑しやすい。"),
+      s("九段会館テラスカフェ", "九段下", "カフェ/休憩", "8月向き", "budokan cafe rest", "九段下駅近く。建物の雰囲気も良く、武道館前の時間調整に使いやすい。", "閉店時間と混雑を確認。"),
+      s("VMG CAFE 九段会館テラス", "九段下", "カフェ", "8月向き", "budokan cafe", "九段会館テラス内のきれいめカフェ。写真も休憩も狙える。", "貸切・営業時間変更に注意。"),
+      s("FACTORY", "九段下", "ベーカリーカフェ", "8月向き", "budokan cafe food", "パンとカフェで軽く済ませたい時に強い。ライブ前の重すぎない食事枠。", "売り切れと行列を確認。"),
+      s("カフェ ミエル", "九段下", "喫茶/カフェ", "8月向き", "budokan cafe", "武道館近くの喫茶候補。暑さ回避と短時間休憩で使いやすい。", "席が埋まりやすい時間帯に注意。"),
+      s("麻布笄軒 九段下店", "九段下", "洋食", "8月向き", "budokan food", "九段下でしっかり洋食を食べたい時の候補。ライブ前ランチに現実的。", "開演前は余裕を持つ。"),
+      s("スターバックス 北の丸スクエア店", "九段下", "カフェ/休憩", "8月向き", "budokan cafe rest", "チェーンだけど武道館前後の待機に強い。混雑時の保険として残す価値あり。", "イベント日は席確保が難しい可能性。"),
+      s("タリーズコーヒー 九段会館テラス店", "九段下", "カフェ/休憩", "8月向き", "budokan cafe rest", "九段下駅からの動線で使いやすい保険枠。暑い日の充電・水分補給に。", "席と電源は保証なし。"),
+      s("さぼうる", "神保町", "老舗喫茶", "8月向き", "budokan cafe", "神保町らしさが濃い喫茶。写真映えより“東京の余韻”が強い。", "行列と席待ちが出やすい。"),
+      s("さぼうる2", "神保町", "喫茶/ナポリタン", "8月向き", "budokan cafe food", "ナポリタンのボリューム感でSNSにも強い。武道館前の腹ごしらえ候補。", "重めなので開演前の時間に注意。"),
+      s("ラドリオ", "神保町", "老舗喫茶", "8月向き", "budokan cafe", "神保町喫茶めぐりの定番。落ち着いて涼みたい時に。", "喫煙/席環境など最新確認。"),
+      s("ミロンガ・ヌオーバ", "神保町", "喫茶/音楽喫茶", "8月向き", "budokan cafe", "レトロ喫茶の雰囲気が強く、ライブ遠征の寄り道に合う。", "混雑と営業時間を確認。"),
+      s("カフェ・トロワバグ", "神保町", "喫茶", "8月向き", "budokan cafe", "地下喫茶の雰囲気があり、神保町で静かに休みたい時の候補。", "席数と営業日確認。"),
+      s("神保町ブックセンター", "神保町", "本/カフェ", "8月向き", "budokan cafe rest", "本の街らしい休憩スポット。ライブ前の体力温存に向く。", "イベント前は長居しすぎ注意。"),
+      s("石釜 bake bread 茶房 TAM TAM", "神保町", "スイーツ/カフェ", "8月向き", "budokan cafe sweets", "石釜ホットケーキやフレンチトースト系でSNS映え。甘いもの候補。", "行列・売り切れ注意。"),
+      s("STYLE'S CAKES & CO.", "神保町", "ケーキ/スイーツ", "8月向き", "budokan sweets", "タルトやケーキで神保町スイーツを拾える。差し入れ気分にも。", "完売が早い日あり。"),
+      s("亀澤堂", "神保町", "和菓子", "8月向き", "budokan sweets", "神保町の和菓子枠。移動中につまめる甘味として候補。", "生菓子の持ち歩きに注意。"),
+      s("御菓子司 ささま", "神保町", "和菓子", "8月向き", "budokan sweets", "老舗和菓子で落ち着いた東京土産にもできる。", "日持ちと営業時間を確認。"),
+      s("ボンディ 神保町本店", "神保町", "欧風カレー", "8月向き", "budokan food", "神保町カレーの代表格。武道館遠征の昼ごはんとして強い。", "行列が長い場合は代替へ。"),
+      s("エチオピア 本店", "神保町", "カレー", "8月向き", "budokan food", "スパイス強めの神保町定番。夏の武道館前にも気分が上がる。", "辛さ選択と待ち時間に注意。"),
+      s("スマトラカレー 共栄堂", "神保町", "カレー", "8月向き", "budokan food", "老舗の黒いスマトラカレー。神保町らしさを濃く味わえる。", "昼ピークは行列想定。"),
+      s("ガヴィアル", "神保町", "欧風カレー", "8月向き", "budokan food", "欧風カレーの代替候補。ボンディ混雑時にも検索したい。", "営業日と階段/席を確認。"),
+      s("ライスカレー まんてん", "神保町", "カレー", "8月向き", "budokan food", "がっつり安定の神保町カレー。SNSより実用性が高い腹ごしらえ枠。", "軽めにしたい日は避ける。"),
+      s("キッチン南海 神保町店", "神保町", "洋食/カレー", "8月向き", "budokan food", "黒カレーと洋食の名店文脈。ライブ前ランチに候補。", "行列と定休日を確認。"),
+      s("スープカレー屋 鴻 神田駿河台店", "神保町/御茶ノ水", "スープカレー", "8月向き", "budokan food", "神保町から少し歩いてもよい時のスープカレー候補。", "夏は汗対策。"),
+      s("欧風カレー ペルソナ", "神保町", "カレー", "8月向き", "budokan food", "カレー激戦区らしい候補を増やす枠。SNS/Xで営業確認しやすい。", "混雑時は時間を読む。"),
+      s("カレー＆オリエンタルバル 桃の実", "水道橋/神保町", "カレー/アジアン", "8月向き", "budokan food", "水道橋寄りのカレー候補。武道館前にも東京ドーム側にも使える。", "営業日確認。"),
+      s("タケウチ 神保町本店", "神保町", "創作カレー", "8月向き", "budokan food", "盛りのビジュアルがSNS向き。候補に入れておくと選ぶ楽しさがある。", "営業時間・売切れ確認。"),
+      s("カーマ", "神保町", "カレー", "8月向き", "budokan food", "神保町カレーの渋い選択肢。混雑回避にも使えるか確認したい。", "最新営業確認。"),
+      s("新世界菜館", "神保町", "中華", "8月向き", "budokan food", "カレー以外でしっかり食べたい時の老舗中華候補。", "ライブ前は食べすぎ注意。"),
+      s("三幸園 白山通り店", "神保町", "中華/餃子", "8月向き", "budokan food", "神保町の町中華枠。Xで混雑や営業を確認しやすい。", "にんにく量とライブ前の距離感に注意。"),
+      s("成光", "神保町", "町中華", "8月向き", "budokan food", "神保町らしい普段使いの食事候補。観光店以外も拾うための枠。", "営業時間を確認。"),
+      s("ランチョン", "神保町", "ビアホール/洋食", "次回向き", "budokan food", "老舗洋食の雰囲気が強い。アルコールなしでも食事候補。", "ライブ前の飲酒は避ける。"),
+      s("ラーメン二郎 神田神保町店", "神保町", "ラーメン", "次回向き", "budokan food", "話題性は抜群。東京グルメとして候補には残したい。", "行列・量・ライブ前の体力消費に注意。"),
+      s("覆麺 智", "神保町", "ラーメン", "8月向き", "budokan food", "神保町ラーメン候補。Xで営業や限定を追いやすい。", "営業ルール確認。"),
+      s("麺屋33", "神保町", "ラーメン", "8月向き", "budokan food", "武道館前の麺候補として残す。暑い日でも短時間で食べやすい。", "ピークの待ち時間確認。"),
+      s("ムアン・タイ・なべ", "神保町", "タイ料理", "8月向き", "budokan food", "カレー以外でスパイス/エスニックを食べたい時に。", "辛さと汗対策。"),
+      s("アボカフェ", "神保町", "カフェ/食事", "8月向き", "budokan cafe food", "アボカド料理で軽めにも食事にも寄せられる。", "席数と営業時間確認。"),
+      s("眞踏珈琲店", "神保町", "喫茶/本", "8月向き", "budokan cafe", "本と珈琲の静かな雰囲気。ライブ前に落ち着きたい時に。", "長居しすぎず開演時間優先。"),
+      s("Book House Cafe", "神保町", "本/カフェ", "8月向き", "budokan cafe rest", "神保町らしい屋内休憩。天候が悪い時にも候補。", "混雑とイベント有無を確認。"),
+      s("サクラカフェ神保町", "神保町", "カフェ/多国籍", "8月向き", "budokan cafe food", "遅め時間まで使いやすいことが多い保険枠。", "終演後利用は当日営業時間確認。"),
+      s("10 DIXANS 神保町", "神保町", "カフェ/スイーツ", "8月向き", "budokan cafe sweets", "DIXANS系を神保町側でも拾う候補。写真映えと休憩を両立。", "店舗・メニューの最新状況確認。"),
+      s("東京ドームシティ", "水道橋", "観光/休憩/食事", "8月向き", "budokan rest food", "武道館から少し動くが、食事・買い物・涼みをまとめやすい。", "イベント重複時の混雑に注意。"),
+      s("ラクーア", "後楽園/水道橋", "観光/休憩/食事", "8月向き", "budokan rest food", "暑い8月に屋内で時間調整しやすい。武道館前後の予備。", "武道館からは徒歩より電車/タクシーも検討。"),
+      s("北の丸公園", "九段下", "観光/休憩", "8月向き", "budokan rest", "武道館すぐ。写真と散策は良いが、8月は暑さに注意。", "昼間は熱中症対策必須。"),
+      s("千鳥ヶ淵", "九段下", "散策", "8月向き", "budokan rest", "武道館近くの短時間散策候補。ライブ前の写真にも。", "暑い日は短めに。"),
+      s("靖國神社", "九段下", "散策", "8月向き", "budokan rest", "九段下周辺の定番寄り道。時間が余った時の候補。", "ライブ優先で滞在時間を短く。"),
+      s("昭和館", "九段下", "屋内スポット", "8月向き", "budokan rest", "武道館近くの屋内スポット。暑さや雨の日の時間調整に。", "開館日・閉館時間確認。"),
+      s("科学技術館", "北の丸公園", "屋内スポット", "8月向き", "budokan rest", "武道館近くで涼める屋内候補。早め到着時の保険。", "閉館時間が早い可能性。"),
+      s("東京国立近代美術館", "竹橋", "美術館/休憩", "8月向き", "budokan rest", "竹橋側に寄るなら屋内で涼める。少し大人寄りの候補。", "展示・休館日確認。"),
+      s("神保町古書店街", "神保町", "散策/買い物", "8月向き", "budokan rest", "本の街らしさを味わえる。短時間でも東京遠征感が出る。", "歩きすぎと暑さに注意。"),
+      s("CANAL CAFE", "飯田橋", "水上カフェ/食事", "8月向き", "budokan cafe food", "飯田橋駅近くで雰囲気が強い。武道館前のごはんにも写真にも。", "暑さ・テラス席・混雑を確認。"),
+      s("THE BAGEL by CIAO", "神楽坂", "ベーグル", "8月向き", "budokan cafe food", "2026年オープンの新しめ候補。SNSで話題化しやすいベーグル枠。", "売り切れ次第終了の可能性。"),
+      s("Aux Merveilleux de Fred 神楽坂", "神楽坂", "スイーツ", "8月向き", "budokan sweets", "メレンゲ菓子の見た目がSNS向き。神楽坂散策に合わせたい。", "持ち歩きと夏の温度に注意。"),
+      s("シマダカフェ神楽坂", "神楽坂", "カフェ/スイーツ", "8月向き", "budokan cafe sweets", "既存画像候補にもある神楽坂カフェ。フレンチトースト系で深掘り。", "混雑時は待ち時間注意。"),
+      s("神楽坂茶寮 本店", "神楽坂", "和カフェ/スイーツ", "8月向き", "budokan cafe sweets", "和スイーツとごはんで使いやすい。神楽坂らしさもある。", "席待ちと営業時間確認。"),
+      s("ル ブルターニュ 神楽坂", "神楽坂", "ガレット", "8月向き", "budokan food cafe", "ガレットで軽め食事にできる。ライブ前に重すぎない候補。", "予約可否・待ち時間確認。"),
+      s("アトリエコータ 神楽坂", "神楽坂", "デザート/パフェ", "8月向き", "budokan sweets", "カウンターデザートの特別感。SNS映えも期待。", "予約・待ち時間・予算を確認。"),
+      s("五十鈴", "神楽坂", "和菓子", "8月向き", "budokan sweets", "神楽坂の手土産・甘味候補。短時間で寄れる。", "夏の持ち歩きに注意。"),
+      s("梅花亭 神楽坂", "神楽坂", "和菓子", "8月向き", "budokan sweets", "神楽坂散策の和菓子枠。小さく持ち帰りやすい。", "営業時間確認。"),
+      s("ペコちゃん焼き 不二家飯田橋神楽坂店", "飯田橋", "スイーツ", "8月向き", "budokan sweets", "飯田橋の名物感があり、SNSの見た目も強い。", "売り切れと行列に注意。"),
+      s("龍朋", "神楽坂", "町中華/炒飯", "8月向き", "budokan food", "炒飯で有名な神楽坂の食事候補。しっかり食べたい時に。", "待ち時間と量に注意。"),
+      s("おけ以", "飯田橋", "餃子/中華", "8月向き", "budokan food", "飯田橋の餃子名店。武道館前のランチ候補として強い。", "にんにくと行列に注意。"),
+      s("AKOMEYA TOKYO in la kagū", "神楽坂", "買い物/カフェ", "8月向き", "budokan rest cafe", "雑貨と食品を見られる屋内寄り道。暑い日の休憩にも。", "カフェ利用可否を確認。"),
+      s("あかぎカフェ", "神楽坂", "カフェ", "8月向き", "budokan cafe", "赤城神社の雰囲気と合わせて楽しめる神楽坂カフェ。", "イベント/混雑を確認。"),
+      s("PAUL 神楽坂店", "神楽坂", "ベーカリーカフェ", "8月向き", "budokan cafe food", "朝から軽く使いやすい保険枠。パン好きなら候補。", "チェーンだが実用性重視。"),
+      s("ル・コキヤージュ", "神楽坂", "ビストロ", "次回向き", "budokan food", "神楽坂らしい食事をゆっくりしたい時に。", "ライブ前は予約・時間に注意。"),
+      s("神楽坂カド", "神楽坂", "和食/居酒屋", "次回向き", "budokan food", "雰囲気重視で次回の夜ごはん候補。", "ライブ前後の飲酒は避ける。"),
+      s("神楽坂ARBOL", "神楽坂", "イタリアン", "次回向き", "budokan food", "隠れ家感があり、遠征の特別ごはん候補。", "予約前提。"),
+      s("俺のフレンチ 神楽坂", "神楽坂", "フレンチ", "次回向き", "budokan food", "わかりやすく満足感のある食事候補。", "ライブ当日は時間管理。"),
+      s("トンボロ", "神楽坂", "喫茶", "8月向き", "budokan cafe", "神楽坂の落ち着いた喫茶候補。SNSより雰囲気重視。", "営業時間確認。"),
+      s("ロイヤルガーデンカフェ 飯田橋", "飯田橋", "カフェ/食事", "8月向き", "budokan cafe food", "飯田橋駅近で使いやすい。ライブ前の集合にも。", "混雑時の席確保に注意。"),
+      s("No.4", "市ヶ谷/麹町", "ベーカリーカフェ", "8月向き", "budokan cafe food", "市ヶ谷方面も視野に入れるなら雰囲気の良い候補。", "武道館から少し歩く。"),
+      s("パン デ フィロゾフ", "神楽坂", "ベーカリー", "8月向き", "budokan food sweets", "パン好きならチェックしたい神楽坂の人気ベーカリー。", "売り切れが早い可能性。"),
+      s("小石川後楽園", "飯田橋/後楽園", "庭園/観光", "8月向き", "budokan rest", "早め到着で自然を見たい時の候補。ただし8月は短時間向き。", "暑さ・閉園時間に注意。"),
+      s("THE FRONT ROOM", "丸の内", "ランチ/カフェ", "両方", "tokyo cafe food", "既存しおり採用店。到着日ランチにも武道館前の東京駅拠点にも使える。", "キャッシュレス決済など最新条件確認。", true, true),
+      s("＆TOKYO", "東京駅", "生ドーナツ/手土産", "両方", "tokyo sweets", "既存しおり採用店。ライブ前後の糖分補給や翌朝用にも回せる。", "売り切れ注意。", true, true),
+      s("FONDAN 大丸東京店", "東京駅", "スイーツ/手土産", "両方", "tokyo sweets", "東京駅で買いやすい手土産候補。短時間で寄れる。", "改札内外の場所確認。", false, true),
+      s("TRIPLE DECKER LONDON", "大丸東京", "英国菓子", "両方", "tokyo sweets", "東京駅の新しめ話題枠として再検索したい。", "営業時間・販売状況確認。", false, true),
+      s("GODIVA Bakery ゴディパン本店", "有楽町/東京駅周辺", "パン/スイーツ", "両方", "tokyo sweets food", "SNS映えと手土産感が強い。東京駅からも寄り道圏。", "行列と整理券の有無を確認。"),
+      s("PRESS BUTTER SAND 東京駅店", "東京駅", "手土産", "両方", "tokyo sweets", "遠征土産の安定枠。SNSより実用性が高い。", "限定品は売り切れ注意。"),
+      s("DEPOT", "東京駅", "カフェ/プリン", "両方", "tokyo cafe sweets", "東京駅のプリン/喫茶感でSNS検索しやすい。", "席待ちと場所確認。"),
+      s("VIRON 丸の内店", "丸の内", "ベーカリー/カフェ", "両方", "tokyo cafe food", "パン・カフェで軽食にも朝にも使える丸の内候補。", "混雑時はテイクアウトも検討。"),
+      s("Buvette 東京ミッドタウン日比谷", "日比谷", "カフェ/ビストロ", "次回向き", "tokyo cafe food", "写真映えと食事感が両立。丸の内から少し足を伸ばす候補。", "武道館/有明当日は時間に注意。"),
+      s("Café 1894", "丸の内", "カフェ/洋食", "両方", "tokyo cafe food", "クラシックな空間で遠征の特別感がある。", "予約・待ち時間確認。"),
+      s("M&C Cafe 丸の内オアゾ", "丸の内", "カフェ/ハヤシライス", "両方", "tokyo cafe food", "東京駅近くで本とカフェを合わせられる。", "ピーク帯の席待ち注意。"),
+      s("つじ半 日本橋本店", "日本橋", "海鮮丼", "次回向き", "tokyo food", "東京駅周辺の行列グルメ候補。SNSで満足感が伝わりやすい。", "行列が長い場合は見送り。"),
+      s("日本橋 天丼 金子半之助 本店", "日本橋", "天丼", "次回向き", "tokyo food", "東京駅から寄れる名物天丼。旅行感が強い。", "行列と油の重さに注意。"),
+      s("千疋屋総本店 日本橋本店", "日本橋", "フルーツ/カフェ", "両方", "tokyo cafe sweets", "フルーツパフェや手土産の王道。暑い日の涼み枠にも。", "予算と混雑確認。"),
+      s("文明堂カフェ 日本橋", "日本橋", "カフェ/スイーツ", "両方", "tokyo cafe sweets", "カステラ系の甘味で東京駅周辺の休憩候補。", "営業時間確認。"),
+      s("鶴屋吉信 TOKYO MISE", "東京駅", "和菓子/カフェ", "両方", "tokyo sweets cafe", "東京駅で和菓子を楽しめる。お土産にも休憩にも。", "実演/カフェ利用時間を確認。"),
+      s("芋屋金次郎 日本橋店", "日本橋", "芋スイーツ", "両方", "tokyo sweets", "揚げたて芋けんぴや芋スイーツで持ち歩きしやすい。", "夏の保管に注意。"),
+      s("六厘舎 東京ラーメンストリート", "東京駅", "ラーメン", "両方", "tokyo food", "東京駅で有名ラーメンを済ませたい時の候補。", "行列が長ければ代替へ。"),
+      s("ソラノイロ NIPPON", "東京駅", "ラーメン", "両方", "tokyo food", "軽め・野菜系も狙える東京駅ラーメン候補。", "店舗場所を確認。"),
+      s("東京駅 斑鳩", "東京駅", "ラーメン", "両方", "tokyo food", "東京駅ラーメンストリートの選択肢。短時間で食事を済ませたい時に。", "混雑確認。"),
+      s("つるとんたん BIS TOKYO", "丸の内", "うどん", "両方", "tokyo food", "冷たいうどんも選べて、暑い日にも使いやすい。", "食事時間は余裕を持つ。"),
+      s("Sarabeth's 東京店", "東京駅", "カフェ/ブランチ", "両方", "tokyo cafe food", "朝〜昼のブランチ候補。到着日のゆったり枠。", "混雑・予約確認。"),
+      s("ラ ブティック ドゥ ジョエル・ロブション 丸の内", "丸の内", "パン/スイーツ", "両方", "tokyo sweets food", "パンや焼き菓子を買いやすく、ライブ前の軽食にも。", "持ち歩きやすいものを選ぶ。"),
+      s("KITTE 屋上庭園", "東京駅", "観光/休憩", "両方", "tokyo rest", "東京駅周辺で短時間の眺めを楽しめる。写真候補。", "夏の日中は短時間に。"),
+      s("丸の内仲通り", "丸の内", "散策/カフェ", "両方", "tokyo rest cafe", "THE FRONT ROOMや東京駅グルメと合わせやすい。", "雨・暑さで短縮。"),
+      s("日比谷公園", "日比谷", "散策/休憩", "次回向き", "tokyo rest", "丸の内から足を伸ばす余裕がある時に。", "8月は暑さに注意。"),
+      s("みそきん 池袋店", "池袋", "ラーメン", "6月向き", "ikebukuro food", "既存しおり最優先。6/17昼の主役候補で、SNS/Xで予約情報確認必須。", "予約枠と公式X/LivePocketを確認。", true, true),
+      s("ル・ポワール", "池袋", "カフェ/洋菓子", "6月向き", "ikebukuro cafe sweets", "池袋駅直結寄りで、みそきん前後の短時間候補。", "時間が余る場合のみ。", false, true),
+      s("目白 志むら", "目白", "甘味/かき氷", "次回向き", "ikebukuro sweets", "池袋から近い甘味候補。かき氷・和スイーツでSNS向き。", "6月Day2は動線が厳しければ次回。", false, true),
+      s("Racines FARM to PARK", "池袋", "カフェ/食事", "6月向き", "ikebukuro cafe food", "池袋で雰囲気よく休みたい時の候補。朝昼にも使いやすい。", "みそきん優先なら予備。"),
+      s("No.18", "池袋", "ハンバーガー", "次回向き", "ikebukuro food", "池袋のバーガー候補。肉好きなら保存しておきたい。", "ライブ前は重さと待ち時間に注意。"),
+      s("皇琲亭", "池袋", "喫茶", "6月向き", "ikebukuro cafe", "池袋の落ち着いた喫茶。みそきん前後の時間調整に。", "席待ち確認。"),
+      s("梟書茶房", "池袋", "ブックカフェ", "6月向き", "ikebukuro cafe rest", "本とカフェで涼める。池袋待機の保険に良い。", "場所と混雑を確認。"),
+      s("タカセ 池袋本店", "池袋", "洋菓子/喫茶", "6月向き", "ikebukuro cafe sweets", "池袋らしい老舗喫茶・洋菓子候補。", "時間が余る時だけ。"),
+      s("キッチンABC 西池袋店", "池袋", "洋食", "6月向き", "ikebukuro food", "がっつり食べたい時の池袋洋食。みそきんが取れない場合の予備。", "ライブ前の量に注意。"),
+      s("麺屋 Hulu-lu", "池袋", "ラーメン", "次回向き", "ikebukuro food", "池袋の人気ラーメン候補。みそきん以外の麺枠として。", "行列と営業日確認。"),
+      s("友誼食府", "池袋", "中華/フードコート", "次回向き", "ikebukuro food", "ディープ寄りで選ぶ楽しさがある。複数人なら面白い。", "ライブ前は匂い・辛さに注意。"),
+      s("すずめや", "池袋", "和菓子/どら焼き", "6月向き", "ikebukuro sweets", "池袋の手土産・小腹満たし候補。", "売り切れ確認。"),
+      s("ぽんでCOFFEE", "池袋", "カフェ/ポンデ", "6月向き", "ikebukuro cafe sweets", "もちもち系スイーツとカフェでSNS再検索しやすい。", "営業時間確認。"),
+      s("あんみつ みはし 東武池袋店", "池袋", "甘味", "6月向き", "ikebukuro sweets cafe", "駅近の甘味保険枠。暑い日の休憩にも。", "混雑時は短時間で。"),
+      s("Age.3×Q HARAJUKU", "原宿", "揚げサンド/スイーツ", "両方", "harajuku sweets food", "既存しおり採用店。原宿らしさと動画映えが強い。", "6/17は表参道出発リミットを守る。", true, true),
+      s("CHAVATY 表参道", "表参道", "紅茶/スコーン", "両方", "harajuku cafe sweets", "既存しおり採用店。休憩しやすく、原宿散策後にちょうどいい。", "混雑時はテイクアウト/通過も検討。", true, true),
+      s("クレープとエスプレッソと", "表参道", "クレープ", "両方", "harajuku sweets cafe", "既存しおり採用店。短時間スイーツとして使いやすい。", "行列ならAge.3×Qと二択。", true, true),
+      s("yellow 表参道", "表参道", "食事/カフェ", "両方", "harajuku food cafe", "既存しおり採用店。みそきんが取れない日の食事寄り代替。", "6/17は時間に余裕がある場合のみ。", true, true),
+      s("Bowls#", "原宿", "グリークヨーグルト", "両方", "harajuku cafe sweets", "朝/昼/おやつ全部に使え、SNSの今っぽさも強い。", "混雑・売り切れ確認。", false, true),
+      s("cafe486", "表参道", "韓国カフェ", "両方", "harajuku cafe sweets", "クロッフルやアサイー系でSNS保存向き。", "席待ちと営業時間確認。", false, true),
+      s("NAMU CAFE Harajuku", "原宿", "韓国カフェ", "両方", "harajuku cafe sweets", "淡いカフェ感とマカロン系で推し活写真にも合う。", "混雑確認。", false, true),
+      s("Asakusa Chaya Tabanenoshi Harajuku", "原宿", "抹茶クレープ", "両方", "harajuku sweets", "抹茶ブリュレクレープ系の手元動画が強い。", "食べ歩き時は暑さ注意。", false, true),
+      s("Sweet XO Good Grief", "原宿", "ポップスイーツ", "両方", "harajuku sweets", "原宿らしいカラフルさ。TikTok文脈のど真ん中。", "甘さ・混雑・営業時間確認。", false, true),
+      s("Tiramisu Labo Harajuku", "原宿", "ティラミス", "両方", "harajuku sweets cafe", "竹下通り周辺の映えスイーツ候補。", "場所と営業確認。", false, true),
+      s("INITIAL Omotesando", "表参道", "夜パフェ", "次回向き", "harajuku sweets cafe", "夜の余裕がある日に強い大人っぽい甘味枠。", "有明ライブ前は時間が重い。", false, true),
+      s("LEMONICA×UNI DONUTS", "原宿", "生ドーナツ/レモネード", "両方", "harajuku sweets", "竹下通りの新しめ話題枠として再検索したい。", "売り切れ・混雑確認。", false, true),
+      s("WAGYUMAFIA THE BURGER", "神宮前", "和牛バーガー", "次回向き", "harajuku food", "原宿寄りの肉枠。プレミアム感が強い。", "予算・営業時間確認。", false, true),
+      s("パンとエスプレッソと", "表参道", "ベーカリーカフェ", "両方", "harajuku cafe food", "表参道の王道ベーカリーカフェ。朝/昼/休憩で使える。", "混雑が強い時間帯に注意。"),
+      s("HIGUMA Doughnuts × Coffee Wrights 表参道", "表参道", "ドーナツ/コーヒー", "両方", "harajuku cafe sweets", "ドーナツとコーヒーで軽く寄れる。SNSにも載せやすい。", "売り切れ確認。"),
+      s("Ralph's Coffee Omotesando", "表参道", "カフェ", "両方", "harajuku cafe", "ブランド感と写真映えが強い表参道カフェ。", "席待ち・予算確認。"),
+      s("CAFE REISSUE", "原宿", "ラテアートカフェ", "両方", "harajuku cafe sweets", "推し活ラテアート系の再検索候補。", "予約・オーダールール確認。"),
+      s("NUMBER SUGAR", "表参道", "キャラメル/手土産", "両方", "harajuku sweets", "小さく持ち帰りやすい表参道土産。", "暑さで溶けないよう注意。"),
+      s("THE MATCHA TOKYO 表参道", "表参道", "抹茶カフェ", "両方", "harajuku cafe sweets", "抹茶ドリンクで涼める。原宿表参道の短時間候補。", "席の有無確認。"),
+      s("GARIGUETTE 表参道", "表参道", "ミルプレッセ", "両方", "harajuku sweets", "手持ちスイーツの映えが強い。", "食べ歩きと行列に注意。"),
+      s("アニヴェルセルカフェ 表参道", "表参道", "カフェ", "両方", "harajuku cafe sweets", "既存画像にもある、表参道らしい雰囲気枠。", "改装/営業時間確認。"),
+      s("アマムダコタン 表参道店", "表参道", "ベーカリー", "両方", "harajuku food sweets", "パン好きならSNSで必ず見たい候補。", "行列と売り切れ前提。"),
+      s("dotcom space Tokyo", "原宿", "カフェ", "両方", "harajuku cafe", "無機質カフェ系の写真候補。推し活にも合わせやすい。", "席数確認。"),
+      s("latte art mania TOKYO", "原宿/外苑前", "ラテアート", "両方", "harajuku cafe", "ラテアートの映えでSNS向き。", "場所と混雑確認。"),
+      s("ROLL ICE CREAM FACTORY 原宿", "原宿", "アイス", "両方", "harajuku sweets", "原宿らしい見た目のアイス候補。", "夏の溶けやすさ注意。"),
+      s("AF GALLERY / ASOBIFACTORY周辺", "原宿", "推し活/寄り道", "6月向き", "harajuku rest", "既存しおりのKAWAII LAB.文脈スポット。公式告知があれば最優先。", "イベント有無を公式で確認。", true),
+      s("TGI FRIDAYS 有明ガーデン店", "有明", "ライブ後ごはん", "6月向き", "ariake food", "既存しおり採用店。会場近くで終演後に迷いにくい現実枠。", "営業状況とラストオーダー確認。", true, true),
+      s("豊洲 千客万来", "豊洲", "食事/観光", "6月向き", "ariake food rest", "有明から移動圏。寿司・海鮮・甘味など複数候補をまとめて探せる。", "観光客混雑と価格に注意。"),
+      s("ららぽーと豊洲", "豊洲", "食事/休憩", "6月向き", "ariake food rest", "有明前後の涼み・食事・トイレ保険。", "閉館時間と移動時間確認。"),
+      s("RHC CAFE ららぽーと豊洲", "豊洲", "カフェ/食事", "6月向き", "ariake cafe food", "豊洲で雰囲気よく休めるカフェ候補。", "席待ち確認。"),
+      s("Butter ららぽーと豊洲", "豊洲", "パンケーキ/カフェ", "6月向き", "ariake cafe sweets", "ライブ前後の甘いもの候補。", "閉店時間と混雑確認。"),
+      s("WILD MAGIC -The Rainbow Farm-", "豊洲", "BBQ/体験", "次回向き", "ariake food rest", "映えと体験感は強いが、ライブ当日は時間が重い。", "予約・天候・暑さ注意。"),
+      s("有明ガーデン フードコート", "有明", "食事/休憩", "6月向き", "ariake food rest", "会場近くで複数選べる保険枠。終演後の現実解。", "イベント日は混雑。"),
+      s("築地食堂源ちゃん 有明ガーデン店", "有明", "海鮮/定食", "6月向き", "ariake food", "有明で定食を食べたい時の候補。", "営業状況確認。"),
+      s("チームラボプラネッツ TOKYO DMM", "豊洲", "観光/体験", "6月向き", "ariake rest", "有明/豊洲の映え観光候補。時間に余裕がある日向け。", "予約・所要時間・濡れる展示に注意。"),
+      s("豊洲市場 魚がし横丁", "豊洲市場", "食事/市場", "次回向き", "ariake food rest", "海鮮好きなら候補。朝〜昼向きでライブ日とは要調整。", "営業時間が早い。"),
+      s("豊洲市場 寿司大", "豊洲市場", "寿司", "次回向き", "ariake food", "話題性は強いが、行列と時間消費が大きい。", "ライブ日には不向きかも。"),
+      s("月島もんじゃストリート", "月島", "もんじゃ/食事", "次回向き", "ariake food", "豊洲・有明から近い夜ごはん候補。", "ライブ後は営業時間と混雑確認。"),
+      s("ブルーボトルコーヒー 豊洲パークカフェ", "豊洲", "カフェ", "6月向き", "ariake cafe rest", "豊洲公園寄りで気分転換しやすい。", "雨・暑さと席確認。"),
+      s("有明アリーナ周辺コンビニ/テイクアウト", "有明", "補給", "6月向き", "ariake food rest", "混雑日でも水分・軽食を確保する現実枠。", "ライブ日は売り切れに注意。"),
+      s("フライング・スコッツマン秋葉原店", "秋葉原", "ホットケーキ/カフェ", "6月向き", "akiba cafe sweets", "既存しおり採用店。ヨドバシAkibaとセットにしやすい。", "最終日は13:00秋葉原出発を守る。", true, true),
+      s("egg baby café", "御徒町", "プリン/カフェ", "次回向き", "akiba cafe sweets", "秋葉原から近いプリン候補。既存バズ候補にもあり。", "6月最終日は時間が厳しければ次回。", false, true),
+      s("とんかつ 丸五", "秋葉原", "とんかつ", "次回向き", "akiba food", "秋葉原の名店枠。東京グルメとして候補には残したい。", "行列・重さ・時間に注意。"),
+      s("雁川", "秋葉原", "中華/炒飯", "6月向き", "akiba food", "秋葉原でがっつり食べたい時のSNS定番候補。", "量と待ち時間に注意。"),
+      s("牛舎", "秋葉原", "ハンバーグ/カレー", "6月向き", "akiba food", "秋葉原の肉・カレー候補。ヨドバシ後の昼に再検索。", "混雑確認。"),
+      s("VAULT COFFEE", "秋葉原", "カフェ", "6月向き", "akiba cafe", "秋葉原で落ち着けるカフェ候補。", "席数と営業時間確認。"),
+      s("The French Toast Factory ヨドバシAkiba店", "秋葉原", "フレンチトースト/カフェ", "6月向き", "akiba cafe sweets", "ヨドバシ内で動線が最高。最終日の甘いもの候補。", "買い物が伸びたら短縮。"),
+      s("mAAch ecute 神田万世橋", "神田/秋葉原", "カフェ/散策", "6月向き", "akiba cafe rest", "秋葉原から歩ける雰囲気の良い寄り道。", "最終日は時間制限あり。"),
+      s("2k540 AKI-OKA ARTISAN", "御徒町/秋葉原", "買い物/カフェ", "次回向き", "akiba rest cafe", "雑貨とカフェの寄り道に良い。", "6月最終日は時間が厳しい。"),
+      s("近江屋洋菓子店 神田店", "神田/淡路町", "洋菓子/カフェ", "両方", "akiba tokyo sweets cafe", "秋葉原・神田寄りの老舗洋菓子候補。", "営業時間とイートイン状況確認。"),
+      s("竹むら", "淡路町", "甘味", "両方", "akiba sweets cafe", "神田須田町の老舗甘味。秋葉原からの寄り道候補。", "営業時間・定休日確認。"),
+      s("神田まつや", "淡路町", "そば", "両方", "akiba food", "老舗そばで軽めに済ませられる。東京らしさも強い。", "混雑と相席に注意。"),
+      s("ショパン", "淡路町", "喫茶", "両方", "akiba cafe", "レトロ喫茶とあんプレス系でSNS再検索したい。", "営業時間確認。"),
+      s("スープカレー カムイ", "秋葉原", "スープカレー", "6月向き", "akiba food", "秋葉原でスパイス系を食べたい時の候補。", "辛さ・汗対策。"),
+      s("カールスジュニア 秋葉原中央通り店", "秋葉原", "バーガー", "6月向き", "akiba food", "チェーン寄りだが短時間で肉を食べたい保険枠。", "東京らしさより実用性。"),
+      s("肉汁麺ススム", "秋葉原", "肉麺", "次回向き", "akiba food", "SNS映えするがっつり肉麺候補。", "ライブ前/フライト前は重さ注意。"),
+      s("秋葉原和堂", "秋葉原", "和カフェ/ネットカフェ", "6月向き", "akiba cafe rest", "休憩・充電・涼みを重視する時の候補。", "利用条件と席確認。"),
+      s("ヨドバシカメラ マルチメディアAkiba", "秋葉原", "買い物/休憩", "6月向き", "akiba rest food", "既存しおりの最終日主軸。飲食店も多く、時間調整しやすい。", "12:10終了リミットを守る。", true),
+      s("挽肉と米 渋谷店", "渋谷", "ハンバーグ", "次回向き", "food", "既存バズ候補。焼きたてハンバーグのライブ感が強い。", "行列込みで次回向き。", false, true),
+      s("She Wolf Diner", "渋谷", "バーガー", "次回向き", "food", "既存バズ候補。アメリカンダイナー感と写真の強さがある。", "今回動線からはやや外れる。", false, true),
+      s("Wagyu Burger", "日本橋", "和牛バーガー", "両方", "tokyo food", "既存バズ候補。東京駅方面と組み合わせやすい肉枠。", "店舗場所・営業時間確認。", false, true),
+      s("アルデバラン", "麻布十番", "和牛バーガー", "次回向き", "food", "既存バズ候補。特別感のあるバーガー枠。", "予約・距離・予算を確認。", false, true),
+      s("Atami", "赤坂見附", "高級バーガー", "次回向き", "food", "既存バズ候補。薪火×和牛バーガー系で映えやすい。", "今回のライブ動線からは外れる。", false, true),
+      s("Overwhelm Hamburger & Bar Stand", "学芸大学", "バーガー", "次回向き", "food", "既存バズ候補。肉厚バーガーを狙う次回候補。", "距離が重い。", false, true),
+      s("Banana Steak Shibuya", "渋谷", "ハンバーグ", "次回向き", "food", "既存バズ候補。渋谷サクラステージ周辺で使いやすい肉枠。", "6月/8月の主動線からは外れる。", false, true),
+      s("MACAPRESSO", "新大久保", "韓国スイーツ", "次回向き", "sweets cafe", "既存バズ候補。トゥンカロンやドバイチョコ系でSNS映え。", "今回は距離と時間が重い。", false, true),
+      s("OKUDO CAFE", "新大久保", "韓国カフェ", "次回向き", "cafe sweets", "既存バズ候補。ドバイチョコ系の流行を拾うなら候補。", "新大久保回を作る時に。", false, true),
+      s("111 CHURROS", "新大久保", "チュロス/カフェ", "次回向き", "cafe sweets", "既存バズ候補。無機質カフェ×韓国スイーツで今っぽい。", "今回動線外。", false, true),
+      s("The Bake Factory", "新大久保", "ベイク/韓国スイーツ", "次回向き", "sweets cafe", "既存バズ候補。新大久保スイーツ回で比較したい。", "今回動線外。", false, true),
+      s("上野 egg baby café 周辺散策", "御徒町/上野", "カフェ/散策", "次回向き", "akiba cafe rest", "秋葉原から少し足を伸ばす次回候補。", "6月最終日は空港優先。"),
+      s("浅草 餃子の王さま", "浅草", "餃子/町中華", "次回向き", "food", "既存しおりで見送り候補。浅草方面を作る時に。", "今回のライブ動線からは外れる。"),
+      s("友路有 浅草店", "浅草", "喫茶/モーニング", "次回向き", "cafe food", "既存しおりで見送り候補。浅草朝ごはん回に。", "有明/武道館からは遠め。"),
+      s("銀座ウエスト 青山ガーデン", "乃木坂/青山", "カフェ/ホットケーキ", "次回向き", "cafe sweets", "既存画像候補。ゆっくり甘いものを食べたい次回枠。", "ライブ日には距離と時間が重い。"),
+      s("プリン研究所", "銀座", "プリン/スイーツ", "次回向き", "tokyo sweets", "既存画像候補。銀座スイーツ回で深掘りしたい。", "今回の優先動線からは外れる。"),
+      s("椿サロン 銀座", "銀座", "パンケーキ", "次回向き", "tokyo cafe sweets", "銀座スイーツ枠。東京駅から寄れるが時間は必要。", "予約・待ち時間確認。"),
+      s("茶珈堂", "表参道/青山", "カフェ/日本茶", "両方", "harajuku cafe sweets", "既存画像候補。表参道で落ち着きたい時の候補。", "場所と営業時間確認。"),
+      s("cafe The SUN LIVES HERE", "三軒茶屋", "チーズケーキ/カフェ", "次回向き", "cafe sweets", "既存画像候補。チーズケーキ好きなら次回深掘り。", "ライブ動線から遠い。"),
+      s("BLACOWS", "恵比寿", "バーガー", "次回向き", "food", "既存画像候補。肉/バーガー好きなら保存。", "今回動線外。"),
+      s("STABLER Shimokitazawa Meatsand 渋谷", "渋谷", "ミートサンド", "次回向き", "food", "既存画像候補。断面映え系の肉サンド。", "今回動線外。"),
+      s("とんかつ はせ川", "両国", "とんかつ", "次回向き", "food", "既存画像候補。とんかつ回で候補。", "武道館/有明からは別日向き。"),
+      s("REC COFFEE 渋谷東店", "渋谷", "カフェ", "次回向き", "cafe", "既存画像候補。渋谷に寄る日があれば休憩候補。", "今回動線外。"),
+      s("Café & Hall Ours", "大崎", "カフェ", "次回向き", "cafe", "既存画像候補。落ち着いたカフェとして保存。", "今回動線からは遠い。")
+    ];
+
+    function s(name, area, type, fit, keys, reason, caution, shiori = false, buzz = false) {
+      const query = `${name} ${area} ${type} 東京 SNS`;
+      return { name, area, type, fit, keys: keys.split(/\s+/), reason, caution, shiori, buzz, query };
+    }
+
+    const active = new Set();
+    const filtersEl = document.getElementById("filters");
+    const gridEl = document.getElementById("grid");
+    const searchEl = document.getElementById("search");
+    const countEl = document.getElementById("count");
+    const emptyEl = document.getElementById("empty");
+
+    for (const [key, label] of filterDefs) {
+      const button = document.createElement("button");
+      button.className = "filter";
+      button.type = "button";
+      button.dataset.key = key;
+      button.textContent = label;
+      button.addEventListener("click", () => {
+        active.has(key) ? active.delete(key) : active.add(key);
+        button.classList.toggle("active", active.has(key));
+        render();
+      });
+      filtersEl.appendChild(button);
+    }
+
+    searchEl.addEventListener("input", render);
+
+    function fitClass(fit) {
+      if (fit === "両方") return "both";
+      if (fit === "6月向き") return "june";
+      if (fit === "8月向き") return "august";
+      if (fit === "次回向き") return "next";
+      return "hold";
+    }
+
+    function snsUrl(kind, query) {
+      const q = encodeURIComponent(query);
+      if (kind === "tiktok") return `https://www.tiktok.com/search?q=${q}`;
+      if (kind === "instagram") return `https://www.instagram.com/explore/search/keyword/?q=${q}`;
+      return `https://x.com/search?q=${q}&src=typed_query&f=live`;
+    }
+
+    function visibleSpots() {
+      const term = searchEl.value.trim().toLowerCase();
+      return spots.filter((spot) => {
+        const filterOk = active.size === 0 || [...active].some((key) => spot.keys.includes(key));
+        if (!filterOk) return false;
+        if (!term) return true;
+        return [spot.name, spot.area, spot.type, spot.fit, spot.reason, spot.caution].join(" ").toLowerCase().includes(term);
+      });
+    }
+
+    function render() {
+      const rows = visibleSpots();
+      gridEl.innerHTML = "";
+      for (const spot of rows) {
+        const card = document.createElement("article");
+        card.className = "card";
+        const tags = [
+          `<span class="tag">${spot.area}</span>`,
+          `<span class="tag">${spot.type}</span>`,
+          spot.shiori ? `<span class="tag mark">既存しおり候補</span>` : "",
+          spot.buzz ? `<span class="tag">既存バズ候補</span>` : ""
+        ].filter(Boolean).join("");
+
+        card.innerHTML = `
+          <div class="card-top">
+            <h3>${escapeHtml(spot.name)}</h3>
+            <span class="fit ${fitClass(spot.fit)}">${spot.fit}</span>
+          </div>
+          <div class="meta">${tags}</div>
+          <p>${escapeHtml(spot.reason)}</p>
+          <p class="note">注意: ${escapeHtml(spot.caution)}</p>
+          <div class="links">
+            <a class="tiktok" href="${snsUrl("tiktok", spot.query)}" target="_blank" rel="noreferrer">TikTok</a>
+            <a class="insta" href="${snsUrl("instagram", spot.query)}" target="_blank" rel="noreferrer">Instagram</a>
+            <a class="x" href="${snsUrl("x", spot.query)}" target="_blank" rel="noreferrer">X</a>
+          </div>
+        `;
+        gridEl.appendChild(card);
+      }
+      countEl.textContent = `${rows.length} / ${spots.length}件 表示`;
+      emptyEl.style.display = rows.length ? "none" : "block";
+    }
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    render();
+  </script>
+</body>
+</html>
