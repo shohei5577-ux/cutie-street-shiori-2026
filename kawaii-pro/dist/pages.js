@@ -1318,154 +1318,386 @@
   }
   function MapPage() {
     const C = useC();
+    const days = T.routeMapDays || [];
+    const [dayId, setDayId] = useState(days[0] && days[0].id || 'day1');
+    const selected = days.find(d => d.id === dayId) || days[0] || {};
+    const pins = T.mapPins || [];
+    const pinById = Object.fromEntries(pins.map(p => [p.id, p]));
+    const routeColor = selected.color === 'cool' ? C.coolD : selected.color === 'green' ? C.greenD : C.primaryD;
+    const routeBg = selected.color === 'cool' ? `${C.cool}26` : selected.color === 'green' ? `${C.green}30` : `${C.primary}24`;
+    const pathPoints = (selected.path || []).map(id => pinById[id]).filter(Boolean);
+    const pathD = pathPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+    const selectedPinIds = new Set((selected.steps || []).map(step => step.pin));
+    const quickLinks = [['ホテル', `${T.hotel.name} ${T.hotel.address}`, C.coolD], ['会場', `${T.venue.name} ${T.venue.address}`, C.primaryD], ['羽田', '羽田空港', C.blueD], ['みそきん', 'みそきん 池袋店', C.orangeD], ['原宿', 'Age.3×Q HARAJUKU', C.greenD], ['秋葉原', 'ヨドバシカメラ マルチメディアAkiba', C.warmD]];
     return /*#__PURE__*/React.createElement(Page, {
       bg: C.paperA
     }, /*#__PURE__*/React.createElement(PageHeader, {
-      kicker: "tokyo map",
-      title: "\u307E\u308F\u308B\u3068\u3053\u308D MAP",
+      kicker: "route map",
+      title: "3\u65E5\u9593\u30EB\u30FC\u30C8 MAP",
       color: C.greenD,
       accent: C.green
-    }), /*#__PURE__*/React.createElement(ScrollArea, null, /*#__PURE__*/React.createElement("div", {
+    }), /*#__PURE__*/React.createElement(ScrollArea, {
+      top: 96
+    }, /*#__PURE__*/React.createElement(Card, {
+      style: {
+        padding: 12,
+        marginBottom: 10,
+        background: `linear-gradient(135deg, #fff, ${routeBg})`
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: 12,
+        alignItems: 'flex-start'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: '"Klee One",sans-serif',
+        fontWeight: 900,
+        color: routeColor,
+        fontSize: 17
+      }
+    }, selected.title || '東京ルート'), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12.4,
+        color: C.soft,
+        lineHeight: 1.55,
+        marginTop: 3
+      }
+    }, selected.memo || 'その日の移動だけを太線で表示します。ピンを押すとGoogle Mapsが開きます。')), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        gap: 6,
+        flexWrap: 'wrap',
+        justifyContent: 'flex-end',
+        flex: '0 0 210px'
+      }
+    }, days.map(d => /*#__PURE__*/React.createElement(FilterButton, {
+      key: d.id,
+      active: selected.id === d.id,
+      onClick: () => setDayId(d.id),
+      color: d.color === 'cool' ? C.coolD : d.color === 'green' ? C.greenD : C.primaryD
+    }, d.label)))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 9,
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: 8,
+        fontSize: 12.2
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: '#fff',
+        borderRadius: 10,
+        padding: '7px 9px',
+        boxShadow: `0 0 0 1.2px ${C.line}`
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: C.blueD
+      }
+    }, "\u5F80\u8DEF"), " ", T.flights.outbound.flightNo, " \uFF0F ", T.flights.outbound.depTime, " \u90A3\u8987 \u2192 ", T.flights.outbound.arrTime, " \u7FBD\u7530"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: '#fff',
+        borderRadius: 10,
+        padding: '7px 9px',
+        boxShadow: `0 0 0 1.2px ${C.line}`
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: C.blueD
+      }
+    }, "\u5FA9\u8DEF"), " ", T.flights.inbound.flightNo, " \uFF0F ", T.flights.inbound.depTime, " \u7FBD\u7530 \u2192 ", T.flights.inbound.arrTime, " \u90A3\u8987"))), /*#__PURE__*/React.createElement("div", {
       style: {
         position: 'relative',
         width: '100%',
-        aspectRatio: '1 / 0.84',
-        background: `color-mix(in srgb, ${C.green} 22%, white)`,
+        aspectRatio: '1 / 0.62',
+        background: '#fffdfb',
         borderRadius: 18,
         overflow: 'hidden',
-        border: `1.5px dashed ${C.green}`
+        border: `1.5px solid ${C.line}`,
+        boxShadow: `0 0 0 5px ${routeBg}`
       }
     }, /*#__PURE__*/React.createElement("svg", {
       viewBox: "0 0 100 100",
-      preserveAspectRatio: "none",
       style: {
         position: 'absolute',
         inset: 0,
         width: '100%',
         height: '100%'
       }
+    }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("marker", {
+      id: "route-arrow",
+      markerWidth: "4.8",
+      markerHeight: "4.8",
+      refX: "4.2",
+      refY: "2.4",
+      orient: "auto",
+      markerUnits: "userSpaceOnUse"
     }, /*#__PURE__*/React.createElement("path", {
-      d: "M0 60 Q 20 50 40 55 T 80 50 T 100 60 L 100 100 L 0 100 Z",
-      fill: `color-mix(in srgb, ${C.green} 38%, white)`
+      d: "M0,0 L4.8,2.4 L0,4.8 Z",
+      fill: routeColor
+    }))), /*#__PURE__*/React.createElement("rect", {
+      x: "0",
+      y: "0",
+      width: "100",
+      height: "100",
+      fill: "#fffdfb"
     }), /*#__PURE__*/React.createElement("path", {
-      d: "M0 80 Q 30 70 60 78 T 100 80 L 100 100 L 0 100 Z",
-      fill: `color-mix(in srgb, ${C.green} 50%, white)`
-    }), /*#__PURE__*/React.createElement("rect", {
-      x: "62",
-      y: "65",
-      width: "38",
-      height: "35",
-      fill: `color-mix(in srgb, ${C.blue} 38%, white)`,
-      opacity: ".6"
+      d: "M66 0 C 62 20 64 38 70 53 C 75 66 74 81 66 100 L100 100 L100 0 Z",
+      fill: `${C.blue}33`
     }), /*#__PURE__*/React.createElement("path", {
-      d: "M30 18 L 47 45 L 60 60 L 68 72",
-      stroke: C.primaryD,
-      strokeWidth: ".9",
-      strokeDasharray: "2 1.5",
+      d: "M58 67 C 70 62 83 64 100 73 L100 100 L45 100 C54 89 53 75 58 67 Z",
+      fill: `${C.green}34`
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M0 61 C19 57 33 62 47 58 C60 54 78 50 100 56",
+      stroke: `${C.greenD}33`,
+      strokeWidth: "7",
       fill: "none",
-      opacity: ".75"
+      strokeLinecap: "round"
     }), /*#__PURE__*/React.createElement("path", {
-      d: "M68 72 L 70 88",
-      stroke: C.coolD,
-      strokeWidth: ".9",
-      strokeDasharray: "2 1.5",
+      d: "M22 12 L37 30 L51 46 L65 58 L76 88",
+      stroke: `${C.blueD}30`,
+      strokeWidth: "2",
       fill: "none",
-      opacity: ".75"
-    })), T.mapPins.map(p => {
-      const isArena = p.id === 'arena';
-      const isHotel = p.id === 'hotel';
-      const bg = isArena ? C.primaryD : isHotel ? C.cool : '#fff';
-      const fg = isArena || isHotel ? '#fff' : C.ink;
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M18 48 L37 42 L50 46 L66 58 L75 70",
+      stroke: `${C.coolD}30`,
+      strokeWidth: "2",
+      fill: "none",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: "M28 18 L43 27 L57 34 L66 58",
+      stroke: `${C.primaryD}25`,
+      strokeWidth: "2",
+      fill: "none",
+      strokeLinecap: "round"
+    }), /*#__PURE__*/React.createElement("text", {
+      x: "18",
+      y: "16",
+      fill: C.soft,
+      opacity: ".38",
+      fontSize: "5",
+      fontWeight: "700"
+    }, "IKEBUKURO"), /*#__PURE__*/React.createElement("text", {
+      x: "45",
+      y: "42",
+      fill: C.soft,
+      opacity: ".38",
+      fontSize: "5",
+      fontWeight: "700"
+    }, "TOKYO"), /*#__PURE__*/React.createElement("text", {
+      x: "72",
+      y: "61",
+      fill: C.blueD,
+      opacity: ".42",
+      fontSize: "5",
+      fontWeight: "700"
+    }, "BAY"), /*#__PURE__*/React.createElement("text", {
+      x: "72",
+      y: "91",
+      fill: C.soft,
+      opacity: ".42",
+      fontSize: "5",
+      fontWeight: "700"
+    }, "HANEDA"), pins.map(p => /*#__PURE__*/React.createElement("g", {
+      key: p.id,
+      opacity: selectedPinIds.has(p.id) ? 1 : .35
+    }, /*#__PURE__*/React.createElement("circle", {
+      cx: p.x,
+      cy: p.y,
+      r: selectedPinIds.has(p.id) ? 2.4 : 1.7,
+      fill: selectedPinIds.has(p.id) ? routeColor : '#fff',
+      stroke: selectedPinIds.has(p.id) ? '#fff' : C.line,
+      strokeWidth: selectedPinIds.has(p.id) ? 1.3 : .9
+    }))), pathD && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("path", {
+      d: pathD,
+      stroke: "#fff",
+      strokeWidth: "6.2",
+      fill: "none",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      opacity: ".92"
+    }), /*#__PURE__*/React.createElement("path", {
+      d: pathD,
+      stroke: routeColor,
+      strokeWidth: "3.2",
+      fill: "none",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      markerEnd: "url(#route-arrow)"
+    }))), (selected.steps || []).map((step, i) => {
+      const p = pinById[step.pin];
+      if (!p) return null;
+      const left = p.x + (step.dx || 0);
+      const top = p.y + (step.dy || 0);
+      const href = mapsUrl(step.query || p.query || step.label || p.label);
       return /*#__PURE__*/React.createElement("a", {
-        key: p.id,
-        href: mapsUrl(p.label),
+        key: `${selected.id}-${i}-${step.pin}`,
+        href: href,
         target: "_blank",
         rel: "noreferrer",
         style: {
           position: 'absolute',
-          left: `${p.x}%`,
-          top: `${p.y}%`,
-          transform: 'translate(-50%, -100%)',
-          textDecoration: 'none'
+          left: `${left}%`,
+          top: `${top}%`,
+          transform: 'translate(-50%, -50%)',
+          textDecoration: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 5,
+          maxWidth: 145
         }
       }, /*#__PURE__*/React.createElement("div", {
         style: {
           width: 24,
           height: 24,
-          borderRadius: '50% 50% 50% 0',
-          background: bg,
-          color: fg,
-          border: `2px solid ${C.primaryD}`,
-          transform: 'rotate(-45deg)',
-          display: 'flex',
+          borderRadius: '50%',
+          background: routeColor,
+          color: '#fff',
+          display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 11,
+          fontSize: 12,
           fontWeight: 900,
-          boxShadow: '0 2px 4px rgba(0,0,0,.18)'
+          boxShadow: '0 2px 7px rgba(0,0,0,.18)',
+          border: '2px solid #fff',
+          flex: '0 0 auto'
         }
-      }, /*#__PURE__*/React.createElement("span", {
+      }, i + 1), /*#__PURE__*/React.createElement("div", {
         style: {
-          transform: 'rotate(45deg)'
-        }
-      }, isArena ? '♡' : '・')), /*#__PURE__*/React.createElement("div", {
-        style: {
-          marginTop: 4,
-          padding: '2px 7px',
-          background: 'rgba(255,255,255,.94)',
-          borderRadius: 5,
-          fontSize: 11,
-          fontWeight: 800,
-          whiteSpace: 'nowrap',
+          padding: '4px 7px',
+          background: 'rgba(255,255,255,.95)',
+          borderRadius: 8,
           color: C.ink,
-          textAlign: 'center'
+          boxShadow: `0 0 0 1px ${C.line}`,
+          lineHeight: 1.25,
+          minWidth: 0
         }
-      }, p.label));
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10.5,
+          color: routeColor,
+          fontWeight: 900,
+          whiteSpace: 'nowrap'
+        }
+      }, step.time), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11.2,
+          fontWeight: 900,
+          overflowWrap: 'anywhere'
+        }
+      }, step.label)));
     }), /*#__PURE__*/React.createElement("div", {
       style: {
         position: 'absolute',
         top: 12,
         left: 14,
         fontFamily: '"Caveat",cursive',
-        fontSize: 26,
-        color: C.primaryD
+        fontSize: 28,
+        color: routeColor
       }
-    }, "TOKYO \u2661"), /*#__PURE__*/React.createElement("div", {
+    }, "Tokyo route"), /*#__PURE__*/React.createElement("div", {
       style: {
         position: 'absolute',
-        bottom: 10,
+        top: 15,
         right: 14,
         fontSize: 11,
         color: C.soft,
-        background: 'rgba(255,255,255,.78)',
-        padding: '2px 8px',
-        borderRadius: 99
+        background: 'rgba(255,255,255,.84)',
+        padding: '3px 8px',
+        borderRadius: 99,
+        fontWeight: 800
       }
-    }, "N \u2191")), /*#__PURE__*/React.createElement("div", {
+    }, "N \u2191  tap pins")), /*#__PURE__*/React.createElement("div", {
       style: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, minmax(0,1fr))',
-        gap: 8,
+        gridTemplateColumns: 'repeat(5, minmax(0,1fr))',
+        gap: 7,
         marginTop: 12
       }
-    }, T.routes.map(r => /*#__PURE__*/React.createElement(Card, {
-      key: r.label,
+    }, (selected.steps || []).map((step, i) => /*#__PURE__*/React.createElement(Card, {
+      key: `${selected.id}-card-${i}`,
       style: {
-        padding: '8px 9px',
-        fontSize: 11.5,
+        padding: '8px 8px',
+        fontSize: 11.4,
         lineHeight: 1.45
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        fontWeight: 900,
-        color: C.greenD
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6,
+        marginBottom: 3
       }
-    }, r.label), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 19,
+        height: 19,
+        borderRadius: '50%',
+        background: routeColor,
+        color: '#fff',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 10,
+        fontWeight: 900,
+        flex: '0 0 auto'
+      }
+    }, i + 1), /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: routeColor
+      }
+    }, step.time)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 900,
+        color: C.ink,
+        overflowWrap: 'anywhere'
+      }
+    }, step.label), /*#__PURE__*/React.createElement("div", {
       style: {
         marginTop: 2,
         color: C.soft
       }
-    }, r.time, " \uFF0F ", r.memo))))));
+    }, step.detail)))), /*#__PURE__*/React.createElement(Card, {
+      style: {
+        marginTop: 12,
+        padding: '11px 12px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: 10,
+        alignItems: 'center',
+        marginBottom: 8
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: C.greenD
+      }
+    }, "\u3059\u3050\u958B\u304F\u5730\u56F3\u30EA\u30F3\u30AF"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 11.5,
+        color: C.soft
+      }
+    }, "\u8FF7\u3063\u305F\u3089\u3053\u3053\u304B\u3089")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        gap: 7,
+        flexWrap: 'wrap'
+      }
+    }, quickLinks.map(([label, query, color]) => /*#__PURE__*/React.createElement(LinkChip, {
+      key: label,
+      query: query,
+      color: color
+    }, label))))));
   }
   window.KP.pages = {
     Cover,

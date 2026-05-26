@@ -51,35 +51,49 @@ window.TRIP = {
     "outbound": {
       "label": "往路",
       "date": "6 / 16 ( 火 )",
-      "from": "",
+      "from": "那覇空港 ( OKA )",
       "to": "羽田空港 ( HND )",
-      "depTime": "",
+      "depTime": "07 : 15",
       "arrTime": "09 : 40",
-      "airline": "",
-      "flightNo": "",
-      "seat": "",
+      "airline": "SKYMARK",
+      "flightNo": "SKY510",
+      "seat": "搭乗券で確認",
       "pnr": ""
     },
     "inbound": {
       "label": "復路",
       "date": "6 / 18 ( 木 )",
       "from": "羽田空港 ( HND )",
-      "to": "",
+      "to": "那覇空港 ( OKA )",
       "depTime": "17 : 05",
-      "arrTime": "",
-      "airline": "",
-      "flightNo": "",
-      "seat": "",
+      "arrTime": "19 : 50",
+      "airline": "SKYMARK",
+      "flightNo": "SKY521",
+      "seat": "搭乗券で確認",
       "pnr": ""
     }
   },
   "routes": [
     {
+      "label": "那覇 → 羽田",
+      "from": "那覇空港",
+      "to": "羽田空港",
+      "time": "2 時間 25 分",
+      "memo": "SKY510 / 07:15 発 09:40 着"
+    },
+    {
       "label": "空港 → ホテル",
       "from": "羽田空港",
       "to": "アパホテル東京ベイ潮見",
-      "time": "約 40 分",
+      "time": "約 50 分",
       "memo": "荷物を預けてから有明へ"
+    },
+    {
+      "label": "ホテル → 丸の内",
+      "from": "潮見",
+      "to": "東京駅 / 丸の内",
+      "time": "約 12 分",
+      "memo": "THE FRONT ROOM と ＆TOKYO"
     },
     {
       "label": "ホテル → 会場",
@@ -94,6 +108,41 @@ window.TRIP = {
       "to": "池袋",
       "time": "約 35 分",
       "memo": "東京駅から山手線"
+    },
+    {
+      "label": "池袋 → 原宿",
+      "from": "池袋",
+      "to": "原宿 / 表参道",
+      "time": "約 20 分",
+      "memo": "みそきん後、短め散策"
+    },
+    {
+      "label": "表参道 → 有明",
+      "from": "表参道",
+      "to": "有明アリーナ",
+      "time": "約 40 分",
+      "memo": "14:15 出発リミット固定"
+    },
+    {
+      "label": "ホテル → 秋葉原",
+      "from": "潮見",
+      "to": "秋葉原",
+      "time": "約 20 分",
+      "memo": "最終日の買い物主軸"
+    },
+    {
+      "label": "ホテル → 羽田",
+      "from": "潮見",
+      "to": "羽田空港",
+      "time": "約 50 分",
+      "memo": "15:20-15:40 羽田着を死守"
+    },
+    {
+      "label": "羽田 → 那覇",
+      "from": "羽田空港",
+      "to": "那覇空港",
+      "time": "2 時間 45 分",
+      "memo": "SKY521 / 17:05 発 19:50 着"
     }
   ],
   "hotel": {
@@ -355,44 +404,197 @@ window.TRIP = {
     {
       "id": "haneda",
       "label": "羽田空港",
-      "x": 70,
+      "query": "羽田空港",
+      "x": 76,
       "y": 88
     },
     {
       "id": "hotel",
       "label": "アパホテル潮見",
-      "x": 60,
-      "y": 60
+      "query": "アパホテル 東京ベイ潮見",
+      "x": 66,
+      "y": 58
     },
     {
       "id": "arena",
       "label": "有明アリーナ",
-      "x": 68,
-      "y": 72
+      "query": "有明アリーナ",
+      "x": 75,
+      "y": 70
     },
     {
       "id": "ikebukuro",
-      "label": "池袋 ( みそきん )",
-      "x": 30,
+      "label": "池袋 / みそきん",
+      "query": "みそきん 池袋店",
+      "x": 28,
       "y": 18
     },
     {
-      "id": "yodobashi",
-      "label": "ヨドバシ池袋",
-      "x": 32,
-      "y": 22
+      "id": "harajuku",
+      "label": "原宿 / 表参道",
+      "query": "原宿 表参道",
+      "x": 24,
+      "y": 44
     },
     {
       "id": "tokyo",
-      "label": "東京駅",
-      "x": 47,
-      "y": 45
+      "label": "東京駅 / 丸の内",
+      "query": "東京駅 丸の内",
+      "x": 50,
+      "y": 46
     },
     {
-      "id": "odaiba",
-      "label": "お台場",
-      "x": 60,
-      "y": 75
+      "id": "akihabara",
+      "label": "秋葉原 / ヨドバシ",
+      "query": "ヨドバシカメラ マルチメディアAkiba",
+      "x": 57,
+      "y": 34
+    },
+    {
+      "id": "toyosu",
+      "label": "豊洲 / 有明",
+      "query": "豊洲 有明",
+      "x": 72,
+      "y": 64
+    }
+  ],
+  "routeMapDays": [
+    {
+      "id": "day1",
+      "label": "DAY 1",
+      "title": "羽田着・丸の内・有明",
+      "memo": "SKY510で羽田着。潮見で身軽にして、丸の内ランチから有明へ。",
+      "color": "primary",
+      "path": [
+        "haneda",
+        "hotel",
+        "tokyo",
+        "arena",
+        "hotel"
+      ],
+      "steps": [
+        {
+          "pin": "haneda",
+          "time": "09:40",
+          "label": "羽田空港",
+          "detail": "SKY510 到着"
+        },
+        {
+          "pin": "hotel",
+          "time": "11:15",
+          "label": "アパホテル潮見",
+          "detail": "荷物預け"
+        },
+        {
+          "pin": "tokyo",
+          "time": "12:10",
+          "label": "丸の内",
+          "detail": "THE FRONT ROOM / ＆TOKYO"
+        },
+        {
+          "pin": "arena",
+          "time": "16:30",
+          "label": "有明アリーナ",
+          "detail": "18:00 開演"
+        },
+        {
+          "pin": "hotel",
+          "time": "21:30",
+          "label": "ホテル戻り",
+          "detail": "翌日に備える",
+          "dx": -4,
+          "dy": 7
+        }
+      ]
+    },
+    {
+      "id": "day2",
+      "label": "DAY 2",
+      "title": "みそきん・原宿・有明",
+      "memo": "みそきんを最優先。原宿/表参道は短く、14:15には有明へ向かう。",
+      "color": "cool",
+      "path": [
+        "hotel",
+        "ikebukuro",
+        "harajuku",
+        "arena",
+        "hotel"
+      ],
+      "steps": [
+        {
+          "pin": "hotel",
+          "time": "09:45",
+          "label": "ホテル発",
+          "detail": "潮見から池袋へ"
+        },
+        {
+          "pin": "ikebukuro",
+          "time": "11:00",
+          "label": "みそきん池袋",
+          "detail": "予約枠に合わせる"
+        },
+        {
+          "pin": "harajuku",
+          "time": "13:15",
+          "label": "原宿 / 表参道",
+          "detail": "Age.3xQ / CHAVATY"
+        },
+        {
+          "pin": "arena",
+          "time": "15:15",
+          "label": "有明アリーナ",
+          "detail": "15:30 開場"
+        },
+        {
+          "pin": "hotel",
+          "time": "22:00",
+          "label": "ホテル戻り",
+          "detail": "翌日の荷造り",
+          "dx": -4,
+          "dy": 7
+        }
+      ]
+    },
+    {
+      "id": "day3",
+      "label": "DAY 3",
+      "title": "秋葉原・カフェ・羽田",
+      "memo": "ヨドバシは12:10終了。荷物回収後、SKY521に向けて羽田へ。",
+      "color": "green",
+      "path": [
+        "hotel",
+        "akihabara",
+        "hotel",
+        "haneda"
+      ],
+      "steps": [
+        {
+          "pin": "hotel",
+          "time": "10:00",
+          "label": "チェックアウト",
+          "detail": "荷物はホテル預け"
+        },
+        {
+          "pin": "akihabara",
+          "time": "11:00",
+          "label": "秋葉原",
+          "detail": "ヨドバシ / カフェ"
+        },
+        {
+          "pin": "hotel",
+          "time": "13:30",
+          "label": "荷物回収",
+          "detail": "14:15 出発",
+          "dx": -5,
+          "dy": 7
+        },
+        {
+          "pin": "haneda",
+          "time": "17:05",
+          "label": "羽田空港",
+          "detail": "SKY521 出発"
+        }
+      ]
     }
   ],
   "rules": [
