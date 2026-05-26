@@ -44,8 +44,8 @@ function KawaiiTab({
       borderRadius: '18px 18px 6px 6px',
       fontFamily: '"Klee One","Zen Maru Gothic",sans-serif',
       fontWeight: 700,
-      fontSize: 11.5,
-      letterSpacing: '.04em',
+      fontSize: 10.8,
+      letterSpacing: 0,
       boxShadow: active ? '0 -3px 0 rgba(255,255,255,.6) inset, 0 2px 0 rgba(0,0,0,.04)' : '0 -2px 0 rgba(0,0,0,.04) inset',
       transform: active ? 'translateY(0)' : 'translateY(6px)',
       opacity: active ? 1 : .78,
@@ -63,7 +63,7 @@ function KawaiiTab({
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: 12,
+      fontSize: 11.5,
       lineHeight: 1
     }
   }, icon), /*#__PURE__*/React.createElement("span", null, label)), active && /*#__PURE__*/React.createElement("span", {
@@ -177,6 +177,12 @@ function App() {
     label: 'みそ',
     icon: '杯',
     Comp: KP.pages.Misokin,
+    show: true
+  }, {
+    id: 'recommended',
+    label: '厳選',
+    icon: '★',
+    Comp: KP.pages.Recommended,
     show: true
   }, {
     id: 'candidates',

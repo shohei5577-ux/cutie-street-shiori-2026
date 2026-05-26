@@ -28,6 +28,28 @@
   const T = window.TRIP;
   const dayColors = C => [C.primaryD, C.coolD, C.greenD];
   const dayBgs = C => [`color-mix(in srgb, ${C.primary} 16%, white)`, `color-mix(in srgb, ${C.cool} 18%, white)`, `color-mix(in srgb, ${C.green} 18%, white)`];
+  const tripDayIds = ['day1', 'day2', 'day3'];
+  function planForDayId(dayId) {
+    const index = tripDayIds.indexOf(dayId);
+    return index >= 0 ? (T.detailedSchedule || [])[index] : null;
+  }
+  function autoDayId() {
+    const today = jstDate();
+    const index = (T.detailedSchedule || []).findIndex(d => d.dateISO === today);
+    return index >= 0 ? tripDayIds[index] : 'prep';
+  }
+  function currentItemForPlan(plan, useClock) {
+    if (!plan || !plan.items || !plan.items.length) return null;
+    if (!useClock) return plan.items[0];
+    const now = jstMinutes();
+    return plan.items.find(item => item.minutes >= now) || plan.items[plan.items.length - 1];
+  }
+  function routeUrl(origin, destination) {
+    return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=transit`;
+  }
+  function rowKey(row) {
+    return `${row.name || ''}-${row.area || ''}`.replace(/\s+/g, '').toLowerCase();
+  }
   function tripCountdownLabel() {
     const start = new Date(T.tripStartISO);
     if (Number.isNaN(start.getTime())) return T.daysNum;
@@ -305,7 +327,8 @@
       color: C.coolD
     }, "\u4F1A\u5834\u5730\u56F3")), /*#__PURE__*/React.createElement(PhotoFrame, {
       storageKey: "cover-photo",
-      label: "\u3053\u3053\u306B\u601D\u3044\u51FA\u306E\u5199\u771F"
+      label: "\u3053\u3053\u306B\u601D\u3044\u51FA\u306E\u5199\u771F",
+      defaultSrc: "assets/og-bg-generated.png"
     }), /*#__PURE__*/React.createElement("div", {
       style: {
         position: 'absolute',
@@ -324,21 +347,59 @@
   }
   function NowPage() {
     const C = useC();
-    const today = jstDate();
-    const now = jstMinutes();
-    const plan = (T.detailedSchedule || []).find(d => d.dateISO === today);
-    const next = plan ? plan.items.find(item => item.minutes >= now) || plan.items[plan.items.length - 1] : null;
-    const prep = ['電子チケット・本人確認書類・FC情報', 'みそきん予約状況', '羽田便のターミナルと時刻', '雨具・モバイルバッテリー'];
+    const automaticDayId = autoDayId();
+    const [mode, setMode] = useLocalValue('now-mode-v2', 'auto');
+    const selectedDayId = mode === 'auto' ? automaticDayId : mode;
+    const plan = planForDayId(selectedDayId);
+    const useClock = mode === 'auto' && selectedDayId !== 'prep';
+    const next = currentItemForPlan(plan, useClock);
+    const nextIndex = plan && next ? plan.items.indexOf(next) : -1;
+    const coming = plan && nextIndex >= 0 ? plan.items.slice(nextIndex, nextIndex + 3) : [];
+    const prep = ['電子チケット・本人確認書類・FC情報を同じポーチへ', 'みそきん予約状況と集合時間をLINEで共有', 'SKY510 / SKY521 のターミナルと搭乗締切を確認', '雨具・モバイルバッテリー・飲み物を前日夜にセット'];
+    const limits = [['6/16', '07:15', 'SKY510 那覇発'], ['6/17', '14:15', '表参道出発リミット'], ['6/18', '15:20', '羽田空港に着いていたい']];
     return /*#__PURE__*/React.createElement(Page, {
       bg: C.paperC
     }, /*#__PURE__*/React.createElement(PageHeader, {
-      kicker: "right now",
-      title: "\u4ECA\u898B\u308B\u753B\u9762",
+      kicker: "today mode",
+      title: "\u4ECA\u3084\u308B\u3053\u3068",
       color: C.primaryD,
       accent: C.primary
-    }), /*#__PURE__*/React.createElement(ScrollArea, null, /*#__PURE__*/React.createElement(Card, {
+    }), /*#__PURE__*/React.createElement(ScrollArea, {
+      top: 78
+    }, /*#__PURE__*/React.createElement("div", {
       style: {
-        background: `color-mix(in srgb, ${C.primary} 12%, white)`
+        display: 'flex',
+        gap: 7,
+        flexWrap: 'wrap',
+        marginBottom: 10
+      }
+    }, /*#__PURE__*/React.createElement(FilterButton, {
+      active: mode === 'auto',
+      onClick: () => setMode('auto'),
+      color: C.primaryD
+    }, "\u81EA\u52D5"), /*#__PURE__*/React.createElement(FilterButton, {
+      active: selectedDayId === 'prep' && mode !== 'auto',
+      onClick: () => setMode('prep'),
+      color: C.warmD
+    }, "\u51FA\u767A\u524D"), tripDayIds.map((id, i) => /*#__PURE__*/React.createElement(FilterButton, {
+      key: id,
+      active: selectedDayId === id && mode !== 'auto',
+      onClick: () => setMode(id),
+      color: [C.primaryD, C.coolD, C.greenD][i]
+    }, "DAY ", i + 1))), /*#__PURE__*/React.createElement(Card, {
+      style: {
+        background: `linear-gradient(135deg, #fff, color-mix(in srgb, ${C.primary} 14%, white))`
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: 12,
+        alignItems: 'flex-start'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        minWidth: 0
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -347,20 +408,24 @@
         fontWeight: 800,
         letterSpacing: '.12em'
       }
-    }, "NEXT"), /*#__PURE__*/React.createElement("div", {
+    }, plan ? 'NEXT ACTION' : 'PREP MODE'), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 25,
-        fontWeight: 800,
+        fontWeight: 900,
         marginTop: 4,
-        fontFamily: '"Klee One",sans-serif'
+        fontFamily: '"Klee One",sans-serif',
+        lineHeight: 1.25
       }
     }, next ? `${next.time} ${next.what}` : tripCountdownLabel()), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 13.5,
         color: C.soft,
-        marginTop: 6
+        marginTop: 6,
+        lineHeight: 1.6
       }
-    }, next ? next.note : '旅行前は下のチェックだけ潰しておけば大丈夫。')), /*#__PURE__*/React.createElement("div", {
+    }, next ? next.note : '旅行前は下のチェックだけ潰しておけば大丈夫。')), /*#__PURE__*/React.createElement(Pill, {
+      color: plan ? C.primaryD : C.warmD
+    }, plan ? plan.day : '出発前'))), /*#__PURE__*/React.createElement("div", {
       style: {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -368,14 +433,46 @@
         marginTop: 14
       }
     }, /*#__PURE__*/React.createElement(InfoTile, {
-      label: "\u4ECA\u65E5",
+      label: "\u8868\u793A\u4E2D",
       value: plan ? plan.title : '出発前チェック',
       color: C.primaryD
     }), /*#__PURE__*/React.createElement(InfoTile, {
-      label: "\u516C\u958B",
-      value: "GitHub Pages\u3067\u5171\u6709\u4E2D",
+      label: "\u5171\u6709",
+      value: "URL\u3072\u3068\u3064\u3067\u53CB\u9054\u306B\u898B\u305B\u3089\u308C\u308B",
       color: C.blueD
-    })), /*#__PURE__*/React.createElement("div", {
+    })), coming.length > 0 ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 14,
+        display: 'grid',
+        gap: 8
+      }
+    }, coming.map((it, i) => /*#__PURE__*/React.createElement(Card, {
+      key: `${it.time}-${i}`,
+      style: {
+        display: 'grid',
+        gridTemplateColumns: '48px 1fr',
+        gap: 10,
+        padding: '10px 12px',
+        alignItems: 'center'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 900,
+        color: i === 0 ? C.primaryD : C.soft,
+        fontFamily: '"Klee One",monospace'
+      }
+    }, it.time), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 900,
+        fontSize: 13.5
+      }
+    }, it.what), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12.2,
+        color: C.soft,
+        lineHeight: 1.45
+      }
+    }, it.note))))) : /*#__PURE__*/React.createElement("div", {
       style: {
         marginTop: 14,
         display: 'grid',
@@ -407,7 +504,52 @@
         fontSize: 13.5,
         fontWeight: 700
       }
-    }, x)))), /*#__PURE__*/React.createElement("div", {
+    }, x)))), /*#__PURE__*/React.createElement(Card, {
+      style: {
+        marginTop: 14,
+        padding: '11px 12px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 900,
+        color: C.warmD,
+        marginBottom: 8
+      }
+    }, "\u7D76\u5BFE\u306B\u5B88\u308B\u6642\u523B"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, minmax(0,1fr))',
+        gap: 8
+      }
+    }, limits.map(([date, time, label]) => /*#__PURE__*/React.createElement("div", {
+      key: `${date}-${time}`,
+      style: {
+        background: C.paperC,
+        borderRadius: 10,
+        padding: '8px 9px',
+        boxShadow: `0 0 0 1px ${C.line}`
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: C.soft,
+        fontWeight: 800
+      }
+    }, date), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 16,
+        color: C.warmD,
+        fontWeight: 900,
+        fontFamily: '"Klee One",monospace'
+      }
+    }, time), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11.5,
+        color: C.ink,
+        fontWeight: 800,
+        lineHeight: 1.35
+      }
+    }, label))))), /*#__PURE__*/React.createElement("div", {
       style: {
         marginTop: 14,
         display: 'flex',
@@ -423,7 +565,25 @@
     }, "\u30DB\u30C6\u30EB"), /*#__PURE__*/React.createElement(LinkChip, {
       query: "\u307F\u305D\u304D\u3093 \u6C60\u888B\u5E97",
       color: C.warmD
-    }, "\u307F\u305D\u304D\u3093"))));
+    }, "\u307F\u305D\u304D\u3093"), /*#__PURE__*/React.createElement("a", {
+      href: routeUrl('アパホテル 東京ベイ潮見', '有明アリーナ'),
+      target: "_blank",
+      rel: "noreferrer",
+      style: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 6,
+        textDecoration: 'none',
+        background: '#fff',
+        color: C.greenD,
+        borderRadius: 99,
+        padding: '5px 10px',
+        fontSize: 12.5,
+        fontWeight: 700,
+        boxShadow: '0 0 0 1.5px ' + C.line,
+        whiteSpace: 'nowrap'
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\u2197"), /*#__PURE__*/React.createElement("span", null, "\u30DB\u30C6\u30EB\u2192\u4F1A\u5834")))));
   }
   function Schedule() {
     const C = useC();
@@ -920,6 +1080,157 @@
       color: C.coolD
     }, "CHAVATY"))));
   }
+  function Recommended() {
+    const C = useC();
+    const [focus, setFocus] = useState('all');
+    const focusDefs = [['all', '全部'], ['day1', 'DAY1'], ['day2', 'DAY2'], ['day3', 'DAY3'], ['rest', '休憩']];
+    const scoreRow = (row, source, index) => {
+      let score = 1000 - index;
+      if (source === '保存') score += 70;
+      if (row.shiori) score += 150;
+      if (row.buzz) score += 80;
+      if (row.fit === '今回向き' || row.fit === '両方') score += 90;
+      if (row.fit === '6月向き') score += 75;
+      if (/東京駅|丸の内|池袋|原宿|表参道|有明|秋葉原|羽田/.test(row.area || '')) score += 80;
+      if (/カフェ|スイーツ|甘味|喫茶|休憩/.test(`${row.type || ''} ${row.reason || ''}`)) score += 25;
+      if (row.fit === '次回向き') score -= 220;
+      return score;
+    };
+    const rows = [...(T.savedStores || []).map((row, index) => ({
+      ...row,
+      source: '保存',
+      score: scoreRow(row, '保存', index)
+    })), ...(T.snsSpots || []).map((row, index) => ({
+      ...row,
+      source: 'SNS',
+      score: scoreRow(row, 'SNS', index)
+    }))];
+    const byKey = new Map();
+    rows.forEach(row => {
+      const key = rowKey(row);
+      const existing = byKey.get(key);
+      if (!existing || row.score > existing.score) byKey.set(key, row);
+    });
+    const matchesFocus = row => {
+      const text = `${row.name || ''} ${row.area || ''} ${row.type || ''} ${row.reason || ''}`;
+      if (focus === 'day1') return /東京駅|丸の内|有明|豊洲/.test(text);
+      if (focus === 'day2') return /池袋|原宿|表参道|有明|豊洲|みそきん/.test(text);
+      if (focus === 'day3') return /秋葉原|羽田|東京駅/.test(text);
+      if (focus === 'rest') return /カフェ|スイーツ|甘味|喫茶|休憩|ドーナツ|クレープ|ヨーグルト/.test(text);
+      return true;
+    };
+    const top = [...byKey.values()].filter(matchesFocus).sort((a, b) => b.score - a.score).slice(0, 20);
+    return /*#__PURE__*/React.createElement(Page, {
+      bg: C.paperC
+    }, /*#__PURE__*/React.createElement(PageHeader, {
+      kicker: "best picks",
+      title: "\u4ECA\u56DE\u306E\u53B3\u9078 TOP20",
+      color: C.primaryD,
+      accent: C.primary
+    }), /*#__PURE__*/React.createElement(ScrollArea, {
+      top: 76
+    }, /*#__PURE__*/React.createElement(Card, {
+      style: {
+        background: `color-mix(in srgb, ${C.primary} 12%, white)`,
+        marginBottom: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 900,
+        color: C.primaryD
+      }
+    }, "\u53CB\u9054\u306B\u898B\u305B\u308B\u306A\u3089\u3053\u3053\u304B\u3089"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12.6,
+        color: C.soft,
+        lineHeight: 1.6,
+        marginTop: 4
+      }
+    }, "\u5019\u88DC200\u4EF6\u304B\u3089\u3001\u4ECA\u56DE\u306E\u52D5\u7DDA\u306B\u5408\u3046\u304A\u5E97\u30FB\u4F11\u61A9\u5834\u6240\u3092\u81EA\u52D5\u3067\u4E0A\u4F4D\u8868\u793A\u3057\u3066\u3044\u307E\u3059\u3002")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        gap: 7,
+        flexWrap: 'wrap',
+        marginBottom: 10
+      }
+    }, focusDefs.map(([key, label]) => /*#__PURE__*/React.createElement(FilterButton, {
+      key: key,
+      active: focus === key,
+      onClick: () => setFocus(key),
+      color: key === 'day2' ? C.coolD : key === 'day3' ? C.greenD : C.primaryD
+    }, label))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: 9
+      }
+    }, top.map((row, i) => /*#__PURE__*/React.createElement(Card, {
+      key: `${row.name}-${i}`,
+      style: {
+        padding: '10px 11px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: 8,
+        alignItems: 'flex-start'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        gap: 8,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 27,
+        height: 27,
+        borderRadius: '50%',
+        background: i < 3 ? C.primaryD : '#fff',
+        color: i < 3 ? '#fff' : C.primaryD,
+        boxShadow: '0 0 0 1.5px ' + C.line,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 12,
+        fontWeight: 900,
+        flex: '0 0 auto'
+      }
+    }, i + 1), /*#__PURE__*/React.createElement("div", {
+      style: {
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: 900,
+        fontSize: 13.5,
+        lineHeight: 1.32,
+        overflowWrap: 'anywhere'
+      }
+    }, row.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        gap: 5,
+        flexWrap: 'wrap',
+        marginTop: 5
+      }
+    }, /*#__PURE__*/React.createElement(Pill, {
+      color: C.orangeD
+    }, row.area), /*#__PURE__*/React.createElement(Pill, {
+      color: C.coolD
+    }, row.type)))), /*#__PURE__*/React.createElement(StoreLink, {
+      name: `${row.name} ${row.area}`,
+      official: row.official
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: C.soft,
+        lineHeight: 1.5,
+        marginTop: 7
+      }
+    }, row.reason || row.caution || `${row.source}候補。時間と混雑を見て選ぶ。`))))));
+  }
   function Candidates() {
     const C = useC();
     const [mode, setMode] = useState('sns');
@@ -1329,6 +1640,7 @@
     const pathD = pathPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
     const selectedPinIds = new Set((selected.steps || []).map(step => step.pin));
     const quickLinks = [['ホテル', `${T.hotel.name} ${T.hotel.address}`, C.coolD], ['会場', `${T.venue.name} ${T.venue.address}`, C.primaryD], ['羽田', '羽田空港', C.blueD], ['みそきん', 'みそきん 池袋店', C.orangeD], ['原宿', 'Age.3×Q HARAJUKU', C.greenD], ['秋葉原', 'ヨドバシカメラ マルチメディアAkiba', C.warmD]];
+    const directionLinks = [['ホテル→会場', 'アパホテル 東京ベイ潮見', '有明アリーナ', C.primaryD], ['池袋→原宿', 'みそきん 池袋店', '原宿駅', C.coolD], ['ホテル→羽田', 'アパホテル 東京ベイ潮見', '羽田空港', C.blueD]];
     return /*#__PURE__*/React.createElement(Page, {
       bg: C.paperA
     }, /*#__PURE__*/React.createElement(PageHeader, {
@@ -1697,7 +2009,33 @@
       key: label,
       query: query,
       color: color
-    }, label))))));
+    }, label))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        gap: 7,
+        flexWrap: 'wrap',
+        marginTop: 8
+      }
+    }, directionLinks.map(([label, origin, destination, color]) => /*#__PURE__*/React.createElement("a", {
+      key: label,
+      href: routeUrl(origin, destination),
+      target: "_blank",
+      rel: "noreferrer",
+      style: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 6,
+        textDecoration: 'none',
+        background: '#fff',
+        color,
+        borderRadius: 99,
+        padding: '5px 10px',
+        fontSize: 12.5,
+        fontWeight: 700,
+        boxShadow: '0 0 0 1.5px ' + C.line,
+        whiteSpace: 'nowrap'
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\u2197"), /*#__PURE__*/React.createElement("span", null, label)))))));
   }
   window.KP.pages = {
     Cover,
@@ -1706,6 +2044,7 @@
     Transport,
     Hotel,
     Misokin,
+    Recommended,
     Candidates,
     Packing,
     Goods,

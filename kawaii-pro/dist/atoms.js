@@ -366,11 +366,13 @@
   }
   function PhotoFrame({
     storageKey = 'cover-photo',
-    label = 'ここに思い出の写真'
+    label = 'ここに思い出の写真',
+    defaultSrc = ''
   }) {
     const C = useC();
     const inputRef = useRef(null);
     const [photo, setPhoto] = useLocalValue(storageKey, '');
+    const src = photo || defaultSrc;
     const choose = () => inputRef.current?.click();
     const onFile = e => {
       const file = e.target.files && e.target.files[0];
@@ -418,7 +420,7 @@
         width: '100%',
         height: '100%',
         border: `1px dashed ${C.line}`,
-        background: photo ? '#fff' : `linear-gradient(135deg,${C.paperC},${C.paperB})`,
+        background: src ? '#fff' : `linear-gradient(135deg,${C.paperC},${C.paperB})`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -430,8 +432,8 @@
         overflow: 'hidden',
         fontFamily: '"Zen Maru Gothic","Klee One",sans-serif'
       }
-    }, photo ? /*#__PURE__*/React.createElement("img", {
-      src: photo,
+    }, src ? /*#__PURE__*/React.createElement("img", {
+      src: src,
       alt: label,
       style: {
         width: '100%',
