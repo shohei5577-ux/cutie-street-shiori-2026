@@ -1,191 +1,46 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CUTIE STREET 東京遠征しおり</title>
-  <meta name="description" content="CUTIE STREETの6月有明遠征と8月日本武道館ライブに向けた東京しおり。既存しおり、SNSスポット候補、保存グルメをまとめて見られます。">
-  <meta name="theme-color" content="#00737c">
-  <link rel="canonical" href="https://shohei5577-ux.github.io/cutie-street-shiori-2026/">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="CUTIE STREET 東京遠征しおり">
-  <meta property="og:title" content="CUTIE STREET 東京遠征しおり">
-  <meta property="og:description" content="有明遠征・日本武道館ライブ・SNS候補・保存グルメをまとめた共有用トップページ。">
-  <meta property="og:url" content="https://shohei5577-ux.github.io/cutie-street-shiori-2026/">
-  <meta property="og:image" content="https://shohei5577-ux.github.io/cutie-street-shiori-2026/assets/tokyo-buzz-gourmet-hero.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <style>
-    :root {
-      --ink: #24303a;
-      --muted: #65737d;
-      --line: #ddd8d0;
-      --paper: #fffaf4;
-      --teal: #00737c;
-      --coral: #cf5c45;
-    }
+<meta charset="utf-8"/>
+<title>旅 の しおり ／ CUTIE STREET LIVE 東京 2026.06.16–18</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-    * {
-      box-sizing: border-box;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet"/>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-      color: var(--ink);
-      background:
-        linear-gradient(160deg, rgba(0, 115, 124, .12), transparent 40%),
-        linear-gradient(20deg, rgba(207, 92, 69, .14), transparent 42%),
-        #f6f1ea;
+<style>
+  html, body { margin:0; padding:0; height:100%; background:#fbf6f1; overflow:hidden; }
+  body { font-family:'Zen Maru Gothic','Klee One', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color:#3b1f2e; }
+  #root { width:100%; height:100vh; }
+  *, *::before, *::after { box-sizing: border-box; }
+  button { font-family: inherit; }
+  a { color: inherit; }
+  @media (max-width: 760px), (max-height: 720px) {
+    .app-hint { display: none !important; }
+  }
+  @media (max-width: 520px) {
+    .app-brand {
+      top: 12px !important;
+      left: 12px !important;
+      transform: scale(.92);
+      transform-origin: left top;
     }
-
-    main {
-      width: min(920px, 100%);
-      margin: 0 auto;
-      padding: 28px 18px 36px;
-    }
-
-    .hero {
-      padding: 26px 0 18px;
-    }
-
-    .eyebrow {
-      margin: 0 0 8px;
-      color: var(--teal);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: .08em;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(30px, 8vw, 56px);
-      line-height: 1.03;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      max-width: 620px;
-      margin: 14px 0 0;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .card {
-      min-height: 190px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 250, 244, .88);
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 10px 24px rgba(45, 38, 30, .08);
-    }
-
-    .card strong {
-      display: block;
-      font-size: 20px;
-      line-height: 1.25;
-      letter-spacing: 0;
-    }
-
-    .card span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .badge {
-      align-self: flex-start;
-      border-radius: 999px;
-      padding: 5px 9px;
-      background: #e8f3f2;
-      color: var(--teal);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .card.primary {
-      background: #fff;
-      border-color: rgba(0, 115, 124, .3);
-    }
-
-    .card.sns .badge {
-      background: #fdebe6;
-      color: var(--coral);
-    }
-
-    .note {
-      margin-top: 18px;
-      padding: 14px 15px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, .68);
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    @media (max-width: 760px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        min-height: 150px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <main>
-    <section class="hero">
-      <p class="eyebrow">CUTIE STREET TOKYO TRIP</p>
-      <h1>東京遠征しおり</h1>
-      <p class="lead">6月の有明遠征と8月の日本武道館ライブ用に、既存しおり・SNS候補・保存グルメをまとめて見られる入口です。</p>
-    </section>
+<div id="root"></div>
 
-    <section class="grid" aria-label="しおり一覧">
-      <a class="card primary" href="cutie-street-tokyo-2026-06.html">
-        <span class="badge">既存しおり</span>
-        <div>
-          <strong>6月 有明遠征しおり</strong>
-          <span>日程、ホテル、みそきん池袋、原宿/表参道、秋葉原、移動メモをまとめた本編。</span>
-        </div>
-      </a>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 
-      <a class="card sns" href="cutie-street-sns-spots-2026.html">
-        <span class="badge">SNS候補</span>
-        <div>
-          <strong>東京スポット候補一覧</strong>
-          <span>武道館・有明・原宿・池袋などの候補をフィルターで比較するページ。</span>
-        </div>
-      </a>
+<script src="trip-data.js"></script>
+<script src="booklet.compiled.js"></script>
+<script src="kawaii-pro/dist/tweaks-panel.js"></script>
+<script src="kawaii-pro/dist/atoms.js"></script>
+<script src="kawaii-pro/dist/pages.js"></script>
+<script src="kawaii-pro/dist/main.js"></script>
 
-      <a class="card" href="tokyo-buzz-gourmet-recommendations.html">
-        <span class="badge">保存グルメ</span>
-        <div>
-          <strong>東京バズグルメ保存版</strong>
-          <span>既存しおりで採用した店を含む、グルメ候補の詳細ページ。</span>
-        </div>
-      </a>
-    </section>
-
-    <p class="note">友達に共有する時は、このトップページのURLを送れば3つのページに移動できます。</p>
-  </main>
 </body>
 </html>

@@ -1,15 +1,13 @@
-# CUTIE STREET Tokyo Travel Shiori 2026
+# CUTIE STREET Tokyo Trip Booklet 2026
 
-Static public site for the Tokyo travel shiori.
+Official shared travel booklet for the June 2026 CUTIE STREET Tokyo trip.
+
+Public URL:
+
+- https://shohei5577-ux.github.io/cutie-street-shiori-2026/
 
 Entry point:
 
 - `index.html`
 
-Recommended permanent hosting:
-
-- GitHub Pages
-- Netlify
-- Cloudflare Pages
-
-After publishing, use the generated HTTPS URL for sharing with friends.
+The site is a static GitHub Pages bundle. It uses precompiled JavaScript, so it does not depend on in-browser Babel.
