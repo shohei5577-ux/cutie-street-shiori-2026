@@ -82,11 +82,87 @@
     }
   }
 
+  function findHotelCard() {
+    // Detect Hotel page by the "HOTEL / 全2泊" kicker.
+    var headings = document.querySelectorAll('div, span');
+    for (var i = 0; i < headings.length; i++) {
+      var t = (headings[i].textContent || '').trim();
+      if (t === 'HOTEL / 全2泊' || /^HOTEL\s*\/\s*全\d+泊$/.test(t)) {
+        // walk up to the surrounding card
+        var card = headings[i];
+        for (var hops = 0; hops < 6 && card.parentElement; hops++) {
+          card = card.parentElement;
+          if (card.style && (card.style.padding || card.style.borderRadius)) {
+            return card;
+          }
+        }
+        return headings[i].parentElement;
+      }
+    }
+    return null;
+  }
+
+  function injectEmergencyDetails() {
+    if (!window.TRIP || !window.TRIP.emergency) return;
+    if (document.getElementById('emergency-details')) return; // idempotent
+    var hotelCard = findHotelCard();
+    if (!hotelCard) return;
+
+    var em = window.TRIP.emergency;
+    var hospitals = Array.isArray(em.hospitals) ? em.hospitals : [];
+
+    var wrap = document.createElement('details');
+    wrap.id = 'emergency-details';
+    wrap.setAttribute('data-print', 'show');
+    wrap.style.cssText = [
+      'margin-top:14px',
+      'padding:12px 14px',
+      'background:#fff5f5',
+      'border:1.5px dashed #ff6b9d',
+      'border-radius:12px',
+      'font-size:13px',
+      'color:#3b1f2e',
+      'line-height:1.6'
+    ].join(';');
+
+    var summary = document.createElement('summary');
+    summary.style.cssText = 'cursor:pointer;font-weight:700;color:#c8366a;outline:none;';
+    summary.textContent = '🚑 緊急 / 病院 (タップで展開)';
+    wrap.appendChild(summary);
+
+    var num = document.createElement('div');
+    num.style.cssText = 'margin-top:8px;font-weight:600;';
+    num.textContent = em.emergencyNumbers || '救急車 119 / #7119';
+    wrap.appendChild(num);
+
+    if (hospitals.length) {
+      var list = document.createElement('div');
+      list.style.cssText = 'margin-top:10px;display:grid;gap:8px;';
+      hospitals.forEach(function (h) {
+        var row = document.createElement('div');
+        row.style.cssText = 'padding:8px 10px;background:#fff;border-radius:10px;box-shadow:0 0 0 1px rgba(255,107,157,.25);';
+        var safeTel = (h.tel || '').replace(/[^0-9#+\-]/g, '');
+        var telPart = safeTel
+          ? '<a href="tel:' + safeTel + '" style="color:#c8366a;font-weight:700;text-decoration:none;">' + h.tel + '</a>'
+          : '';
+        row.innerHTML =
+          '<div style="font-weight:700;color:#c8366a;">' + (h.area || '') + ' / ' + (h.name || '') + '</div>' +
+          (telPart ? '<div style="margin-top:2px;">📞 ' + telPart + '</div>' : '') +
+          (h.note ? '<div style="margin-top:2px;font-size:12px;color:rgba(59,31,46,.7);">' + h.note + '</div>' : '');
+        list.appendChild(row);
+      });
+      wrap.appendChild(list);
+    }
+
+    hotelCard.appendChild(wrap);
+  }
+
   function runAll(root) {
     enhanceImages(root);
     enhanceExternalLinks(root);
     enhanceButtons(root);
     markEmptyPlaceholders(root);
+    injectEmergencyDetails();
   }
 
   // Initial pass

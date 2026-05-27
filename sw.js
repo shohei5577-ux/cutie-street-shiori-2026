@@ -7,7 +7,7 @@
  *   - Offline fallback: cached index.html
  */
 
-const VERSION = 'shiori-v2-2026-06';
+const VERSION = 'shiori-v3-2026-06';
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 
@@ -27,6 +27,7 @@ const PRECACHE_URLS = [
   './kawaii-pro/dist/main.js',
   './kawaii-pro/dist/tweaks-panel.js',
   './assets/cover-oshi-trip.png',
+  './assets/og-bg-generated.png',
   './assets/og-image.png',
   './assets/icon-192.png',
   './assets/icon-512.png'
