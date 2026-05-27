@@ -1,0 +1,140 @@
+[
+  {
+    "name": "egg baby café",
+    "category": "sweets",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/02-sweets-cafe/egg-baby-cafe.jpg",
+    "sourceUrl": "https://image.co-trip.jp/content/14renewal_images_l/638422/main_image_20231217153325766.jpg",
+    "page": "https://co-trip.jp/article/638422",
+    "bytes": 68008
+  },
+  {
+    "name": "GENUINE BURGER & BAL TORANOMON",
+    "category": "lunch",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/03-lunch-dinner/genuine-burger-and-bal-toranomon.jpg",
+    "sourceUrl": "https://wanderlog.com/assets/GetAppPromoInner__inOneViewImage.jpg",
+    "page": "https://wanderlog.com/place/details/3433419/genuine-burger-toranomon",
+    "bytes": 72100
+  },
+  {
+    "name": "SUNDOWNER 東京オムレツ",
+    "category": "want",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/04-want-next/sundowner-東京オムレツ.jpg",
+    "sourceUrl": "https://zushi-hayama.jp/sites/wp-content/uploads/2023/08/e_sundowner_tokyo1.jpg",
+    "page": "https://zushi-hayama.jp/eat/sundowner-tokyo-omuretsu/",
+    "bytes": 169622
+  },
+  {
+    "name": "ガレットリア",
+    "category": "sweets",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/02-sweets-cafe/ガレットリア.jpg",
+    "sourceUrl": "https://image.co-trip.jp/content/14renewal_images_l/512702/main_image_20210303154436720.JPG",
+    "page": "https://co-trip.jp/article/512702?page=1",
+    "bytes": 94325
+  },
+  {
+    "name": "ゴリゴリバーガータップルーム",
+    "category": "lunch",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/03-lunch-dinner/ゴリゴリバーガータップルーム.jpg",
+    "sourceUrl": "https://www.tokyoheadline.com/wp-content/uploads/2022/09/DSC07395.jpg",
+    "page": "https://www.tokyoheadline.com/647163/",
+    "bytes": 187412
+  },
+  {
+    "name": "パンケーキカフェ 椿サロン 銀座店",
+    "category": "sweets",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/02-sweets-cafe/パンケーキカフェ-椿サロン-銀座店.jpg",
+    "sourceUrl": "https://image.co-trip.jp/content/14renewal_images_l/421057/main_image.JPG",
+    "page": "https://co-trip.jp/article/421057",
+    "bytes": 66947
+  },
+  {
+    "name": "ハンバーグ ウィル",
+    "category": "lunch",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/03-lunch-dinner/ハンバーグ-ウィル.jpg",
+    "sourceUrl": "https://www.umai-net.com/hagenbund/wp-content/uploads/2020/12/026-1.jpg",
+    "page": "https://www.umai-net.com/hagenbund/archives/17946",
+    "bytes": 260591
+  },
+  {
+    "name": "洋食 ハンバーグ ウィル 新宿",
+    "category": "lunch",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/03-lunch-dinner/洋食-ハンバーグ-ウィル-新宿.jpg",
+    "sourceUrl": "https://www.umai-net.com/hagenbund/wp-content/uploads/2020/12/026-1.jpg",
+    "page": "https://www.umai-net.com/hagenbund/archives/17946",
+    "bytes": 260591
+  },
+  {
+    "name": "レストラン チャモロ",
+    "category": "lunch",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/03-lunch-dinner/レストラン-チャモロ.webp",
+    "sourceUrl": "https://rimage.gnst.jp/www.gnavi.co.jp/dressing/image/article/99/11399/carousel_3c2157f4e0de180671be2644d20b95df.jpg",
+    "page": "https://www.gnavi.co.jp/dressing/article/11399/",
+    "bytes": 19064
+  },
+  {
+    "name": "石釜bakebread茶房 TAM TAM",
+    "category": "sweets",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/02-sweets-cafe/石釜bakebread茶房-tam-tam.webp",
+    "sourceUrl": "https://rstatic.enjoytokyo.jp/assets/images/article/d4/5338/main.jpg?1708481100&p=t&w=1200",
+    "page": "https://www.enjoytokyo.jp/article/109215/",
+    "bytes": 55194
+  },
+  {
+    "name": "焼肉じゅん 二子玉川",
+    "category": "want",
+    "status": "failed",
+    "error": "fetch failed"
+  },
+  {
+    "name": "Balcony by 6th",
+    "category": "lunch",
+    "status": "failed",
+    "error": "skip svg 61029"
+  },
+  {
+    "name": "cafe AALIYA",
+    "category": "breakfast",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/01-breakfast-morning/cafe-aaliya.jpg",
+    "sourceUrl": "https://www.aaliya.jp/top/top_aaliya.jpg",
+    "page": "https://www.aaliya.jp/",
+    "bytes": 26969
+  },
+  {
+    "name": "焼肉ダイニング太樹苑 西新宿店 Part-1",
+    "category": "lunch",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/03-lunch-dinner/焼肉ダイニング太樹苑-西新宿店-part-1.webp",
+    "sourceUrl": "https://www.taijuen.co.jp/wp-content/uploads/taijuen.jpg",
+    "page": "https://www.taijuen.co.jp/",
+    "bytes": 102554
+  },
+  {
+    "name": "友路有 浅草店",
+    "category": "sweets",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/02-sweets-cafe/友路有-浅草店.jpg",
+    "sourceUrl": "https://kissaten.jp/data/mls821l_main_3.jpg",
+    "page": "https://kissaten.jp/tenpo02.php?pg=2",
+    "bytes": 79575
+  },
+  {
+    "name": "シマダカフェ神楽坂",
+    "category": "sweets",
+    "status": "nonofficial-or-retry",
+    "file": "assets/gourmet/02-sweets-cafe/シマダカフェ神楽坂.jpg",
+    "sourceUrl": "https://cdn.goope.jp/14358/150714223151mvdj_l.jpg",
+    "page": "https://shimadacafe.com/",
+    "bytes": 724292
+  }
+]

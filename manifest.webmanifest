@@ -1,0 +1,42 @@
+{
+  "name": "旅 の しおり / CUTIE STREET 東京遠征 2026",
+  "short_name": "旅のしおり",
+  "description": "CUTIE STREET 東京遠征 2026.06.16-18 の旅行しおり。行程・MAP・交通・候補リスト。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fbf6f1",
+  "theme_color": "#ffe7eb",
+  "lang": "ja",
+  "categories": ["travel", "lifestyle", "entertainment"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/cover-oshi-trip.png",
+      "sizes": "1200x900",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "旅のしおり表紙"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Editor / OS noise
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
+
+# Claude Code local config (not for deploy)
+.claude/
+
+# Local server / preview artefacts
+*.log
+.tmp/
+.cache/
