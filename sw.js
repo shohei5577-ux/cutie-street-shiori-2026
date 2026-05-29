@@ -7,7 +7,7 @@
  *   - Offline fallback: cached index.html
  */
 
-const VERSION = 'shiori-v7-2026-06';
+const VERSION = 'shiori-v8-2026-06';
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 

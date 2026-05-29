@@ -1199,7 +1199,20 @@
         fontWeight: 900,
         flex: '0 0 auto'
       }
-    }, i + 1), /*#__PURE__*/React.createElement("div", {
+    }, i + 1), row.image && /*#__PURE__*/React.createElement("img", {
+      src: row.image,
+      alt: row.imageAlt || row.name,
+      loading: "lazy",
+      decoding: "async",
+      style: {
+        width: 44,
+        height: 44,
+        borderRadius: 8,
+        objectFit: 'cover',
+        flex: '0 0 auto',
+        boxShadow: '0 0 0 1.5px ' + C.line
+      }
+    }), /*#__PURE__*/React.createElement("div", {
       style: {
         minWidth: 0
       }
@@ -1334,6 +1347,26 @@
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
+        display: 'flex',
+        gap: 10,
+        minWidth: 0,
+        alignItems: 'flex-start'
+      }
+    }, row.image && /*#__PURE__*/React.createElement("img", {
+      src: row.image,
+      alt: row.imageAlt || row.name,
+      loading: "lazy",
+      decoding: "async",
+      style: {
+        width: 72,
+        height: 72,
+        borderRadius: 10,
+        objectFit: 'cover',
+        flex: '0 0 auto',
+        boxShadow: '0 0 0 1.5px ' + C.line
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
         minWidth: 0
       }
     }, /*#__PURE__*/React.createElement("div", {
@@ -1356,7 +1389,7 @@
       color: C.coolD
     }, row.type), /*#__PURE__*/React.createElement(Pill, {
       color: C.greenD
-    }, row.fit))), /*#__PURE__*/React.createElement(StoreLink, {
+    }, row.fit)))), /*#__PURE__*/React.createElement(StoreLink, {
       name: `${row.name} ${row.area}`,
       official: row.official
     })), (row.reason || row.caution) && /*#__PURE__*/React.createElement("div", {
@@ -1652,7 +1685,7 @@
       accent: C.green
     }), /*#__PURE__*/React.createElement(ScrollArea, {
       top: 96
-    }, /*#__PURE__*/React.createElement(Card, {
+    }, /*#__PURE__*/React.createElement(Card, { style: { padding: 12, marginBottom: 10 } }, /*#__PURE__*/React.createElement("div", { style: { fontWeight: 800, color: C.greenD, marginBottom: 8 } }, "🗺 実際の地図（有明アリーナ周辺）"), /*#__PURE__*/React.createElement("iframe", { src: "https://maps.google.com/maps?q=" + encodeURIComponent(T.venue.name + " 東京") + "&z=15&output=embed", title: "有明アリーナ周辺の地図", loading: "lazy", referrerPolicy: "no-referrer-when-downgrade", allowFullScreen: true, style: { width: '100%', height: 280, border: 0, borderRadius: 12, display: 'block' } }), (T.savedMapLists && T.savedMapLists.length) && /*#__PURE__*/React.createElement("div", { style: { marginTop: 10 } }, /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: C.soft, marginBottom: 6 } }, "Googleマップ保存リスト（グルメ）"), /*#__PURE__*/React.createElement("div", { style: { display: 'flex', gap: 8, flexWrap: 'wrap' } }, T.savedMapLists.map(function (l, i) { return /*#__PURE__*/React.createElement("a", { key: i, href: l.href, target: "_blank", rel: "noopener noreferrer", style: { fontSize: 12.5, color: C.greenD, textDecoration: 'none', border: '1.5px solid ' + C.greenD, borderRadius: 999, padding: '5px 12px', fontWeight: 600 } }, "📍 " + l.label); })))), /*#__PURE__*/React.createElement(Card, {
       style: {
         padding: 12,
         marginBottom: 10,
