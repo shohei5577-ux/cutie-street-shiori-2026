@@ -7,7 +7,7 @@
  *   - Offline fallback: cached index.html
  */
 
-const VERSION = 'shiori-v3-2026-06';
+const VERSION = 'shiori-v7-2026-06';
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 
@@ -90,7 +90,9 @@ self.addEventListener('fetch', (event) => {
 });
 
 function cacheFirst(request, cacheName) {
-  return caches.match(request).then((cached) => {
+  // ignoreSearch so cache-busted URLs (foo.js?v=…) still match the
+  // query-less precache entries, keeping offline mode reliable.
+  return caches.match(request, { ignoreSearch: true }).then((cached) => {
     if (cached) return cached;
     return fetch(request).then((response) => {
       if (response && response.status === 200 && response.type === 'basic') {
@@ -109,7 +111,7 @@ function networkFirst(request, cacheName) {
       caches.open(cacheName).then((cache) => cache.put(request, clone));
     }
     return response;
-  }).catch(() => caches.match(request));
+  }).catch(() => caches.match(request, { ignoreSearch: true }));
 }
 
 function staleWhileRevalidate(request, cacheName) {

@@ -366,7 +366,7 @@
       accent: C.primary
     }), /*#__PURE__*/React.createElement(ScrollArea, {
       top: 78
-    }, /*#__PURE__*/React.createElement("div", {
+    }, (T.weather || T.wifi || T.liveDetails) && /*#__PURE__*/React.createElement(Card, { style: { marginBottom: 12 } }, /*#__PURE__*/React.createElement("div", { style: { fontWeight: 800, color: C.primaryD, marginBottom: 8 } }, "当日メモ（天気・WiFi・ライブ時刻）"), T.weather && /*#__PURE__*/React.createElement("div", { style: { fontSize: 13, marginBottom: 4 } }, "🌤 " + T.weather.season), T.weather && T.weather.tips && /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: C.soft, marginBottom: 6 } }, T.weather.tips), T.weather && T.weather.links && /*#__PURE__*/React.createElement("div", { style: { display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 } }, T.weather.links.map(function (l, i) { return /*#__PURE__*/React.createElement("a", { key: i, href: l.href, target: "_blank", rel: "noopener noreferrer", style: { fontSize: 12, color: C.coolD, textDecoration: 'none', border: '1px solid ' + C.coolD, borderRadius: 999, padding: '2px 10px' } }, "↗ " + l.label); })), T.wifi && /*#__PURE__*/React.createElement("div", { style: { fontWeight: 700, color: C.coolD, marginBottom: 4, fontSize: 13 } }, "WiFi / 通信"), T.wifi && /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: C.soft, marginBottom: 10, lineHeight: 1.6 } }, (T.wifi.hotel || "") + " / " + (T.wifi.carrier || "")), T.liveDetails && T.liveDetails.days && /*#__PURE__*/React.createElement("div", { style: { fontWeight: 700, color: C.warmD, marginBottom: 4, fontSize: 13 } }, "ライブ時刻"), T.liveDetails && T.liveDetails.days && /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: C.soft, lineHeight: 1.7 } }, T.liveDetails.days.map(function (d, i) { return /*#__PURE__*/React.createElement("div", { key: i }, d.day + " " + d.date + " 開場" + d.open + " 開演" + d.start + " 終演目安" + d.expectedEnd); }))), /*#__PURE__*/React.createElement("div", {
       style: {
         display: 'flex',
         gap: 7,
@@ -1001,7 +1001,9 @@
       title: "\u307F\u305D\u304D\u3093\u4E88\u7D04\u4F5C\u6226",
       color: C.warmD,
       accent: C.warm
-    }), /*#__PURE__*/React.createElement(ScrollArea, null, /*#__PURE__*/React.createElement(Card, {
+    }), /*#__PURE__*/React.createElement(ScrollArea, null, T.misokinInfo && /*#__PURE__*/React.createElement(Card, {
+      style: { marginBottom: 13 }
+    }, /*#__PURE__*/React.createElement("div", { style: { fontWeight: 800, color: C.warmD, marginBottom: 8 } }, "みそきん 池袋店 詳細"), /*#__PURE__*/React.createElement("div", { style: { display: 'grid', gridTemplateColumns: 'auto 1fr', rowGap: 6, columnGap: 14, fontSize: 13 } }, /*#__PURE__*/React.createElement(Row, { k: "住所", v: T.misokinInfo.address }), /*#__PURE__*/React.createElement(Row, { k: "アクセス", v: T.misokinInfo.access }), /*#__PURE__*/React.createElement(Row, { k: "営業", v: T.misokinInfo.hours }), /*#__PURE__*/React.createElement(Row, { k: "予約", v: T.misokinInfo.reservation }), /*#__PURE__*/React.createElement(Row, { k: "料金", v: T.misokinInfo.price }), /*#__PURE__*/React.createElement(Row, { k: "枠公開", v: T.misokinInfo.release })), /*#__PURE__*/React.createElement("div", { style: { marginTop: 8, fontSize: 12.5, color: C.warmD, lineHeight: 1.6 } }, "⚠ " + T.misokinInfo.warning), (T.galaxyTraining && T.galaxyTraining.venueCandidates) && /*#__PURE__*/React.createElement("div", { style: { marginTop: 12 } }, /*#__PURE__*/React.createElement("div", { style: { fontWeight: 800, color: C.coolD, marginBottom: 6 } }, "研修のカフェ候補（WiFi・電源確認）"), /*#__PURE__*/React.createElement("div", { style: { display: 'grid', gap: 5, fontSize: 12.5, color: C.soft } }, T.galaxyTraining.venueCandidates.map(function (v, i) { return /*#__PURE__*/React.createElement("div", { key: i }, "・" + v.name + "（" + v.open + "開店" + (v.wifi ? " / WiFi" : "") + (v.power ? "・電源" : "") + "）" + (v.note ? " " + v.note : "")); })))), /*#__PURE__*/React.createElement(Card, {
       style: {
         background: `color-mix(in srgb, ${C.warm} 18%, white)`
       }
@@ -1129,7 +1131,7 @@
       accent: C.primary
     }), /*#__PURE__*/React.createElement(ScrollArea, {
       top: 76
-    }, /*#__PURE__*/React.createElement(Card, {
+    }, /*#__PURE__*/React.createElement(Card, { style: { marginBottom: 10 } }, /*#__PURE__*/React.createElement("div", { style: { fontWeight: 800, color: C.primaryD, marginBottom: 8 } }, "🕐 今回行く店の営業情報"), (T.savedStores || []).filter(function (s) { return s.hours || s.reservation || s.priceRange; }).map(function (s, i) { return /*#__PURE__*/React.createElement("div", { key: i, style: { marginBottom: 8, paddingBottom: 8, borderBottom: '1px dashed rgba(0,0,0,0.08)' } }, /*#__PURE__*/React.createElement("div", { style: { fontWeight: 700, fontSize: 13 } }, s.name + (s.area ? "（" + s.area + "）" : "")), /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: C.soft, lineHeight: 1.6 } }, (s.hours ? "🕐 " + s.hours : "") + (s.reservation ? " / 📝 " + s.reservation : "") + (s.priceRange ? " / 💰 " + s.priceRange : ""))); })), /*#__PURE__*/React.createElement(Card, {
       style: {
         background: `color-mix(in srgb, ${C.primary} 12%, white)`,
         marginBottom: 10
@@ -1514,7 +1516,7 @@
       title: "\u30B0\u30C3\u30BA \uFF06 \u304A\u5C0F\u9063\u3044",
       color: C.primaryD,
       accent: C.primary
-    }), /*#__PURE__*/React.createElement(ScrollArea, null, /*#__PURE__*/React.createElement("div", {
+    }), /*#__PURE__*/React.createElement(ScrollArea, null, (T.budget || T.goods) && /*#__PURE__*/React.createElement(Card, { style: { marginBottom: 14 } }, T.budget && /*#__PURE__*/React.createElement("div", { style: { fontWeight: 800, color: C.warmD, marginBottom: 8 } }, "予算の目安（" + T.budget.perPerson + "）"), T.budget && /*#__PURE__*/React.createElement("div", { style: { display: 'grid', gridTemplateColumns: 'auto 1fr', rowGap: 5, columnGap: 14, fontSize: 13, marginBottom: 8 } }, (T.budget.items || []).map(function (it, i) { return /*#__PURE__*/React.createElement(Row, { key: i, k: it.label, v: it.value }); })), T.budget && T.budget.note && /*#__PURE__*/React.createElement("div", { style: { fontSize: 12, color: C.soft, marginBottom: 10 } }, T.budget.note), T.goods && /*#__PURE__*/React.createElement("div", { style: { fontWeight: 800, color: C.primaryD, marginBottom: 6 } }, "物販メモ"), T.goods && /*#__PURE__*/React.createElement("div", { style: { fontSize: 12.5, color: C.soft, lineHeight: 1.7 } }, T.goods.advanceSale ? "通販先行: " + T.goods.advanceSale : "", /*#__PURE__*/React.createElement("br"), T.goods.venueSale ? "会場販売: " + T.goods.venueSale : "", /*#__PURE__*/React.createElement("br"), T.goods.tips || "")), /*#__PURE__*/React.createElement("div", {
       style: {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',

@@ -119,7 +119,7 @@
 </style>
 
 <!-- Override stylesheet (a11y / mobile tweaks) -->
-<link rel="stylesheet" href="override.css"/>
+<link rel="stylesheet" href="override.css?v=20260529d"/>
 </head>
 <body>
 <noscript>
@@ -139,16 +139,16 @@
         integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1"
         crossorigin="anonymous" defer></script>
 
-<!-- App (defer preserves order) -->
-<script src="trip-data.js" defer></script>
-<script src="booklet.compiled.js" defer></script>
-<script src="kawaii-pro/dist/tweaks-panel.js" defer></script>
-<script src="kawaii-pro/dist/atoms.js" defer></script>
-<script src="kawaii-pro/dist/pages.js" defer></script>
-<script src="kawaii-pro/dist/main.js" defer></script>
+<!-- App (defer preserves order). ?v= = cache-busting; bump on each content update. -->
+<script src="trip-data.js?v=20260529d" defer></script>
+<script src="booklet.compiled.js?v=20260529d" defer></script>
+<script src="kawaii-pro/dist/tweaks-panel.js?v=20260529d" defer></script>
+<script src="kawaii-pro/dist/atoms.js?v=20260529d" defer></script>
+<script src="kawaii-pro/dist/pages.js?v=20260529d" defer></script>
+<script src="kawaii-pro/dist/main.js?v=20260529d" defer></script>
 
 <!-- A11y / loading enhancements -->
-<script src="enhance.js" defer></script>
+<script src="enhance.js?v=20260529d" defer></script>
 
 <!-- Service Worker registration -->
 <script>

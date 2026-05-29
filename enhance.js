@@ -157,12 +157,44 @@
     hotelCard.appendChild(wrap);
   }
 
+  // ---- Active page helpers (kawaii-pro renders one .book-page.is-active) ----
+  function getActivePage() {
+    return document.querySelector('#root .book-page.is-active');
+  }
+  function activePageText() {
+    var p = getActivePage();
+    return p ? (p.innerText || '') : '';
+  }
+  // ---- 候補タブ: default "候補" list is empty (snsSpots absent) -> select 保存 ----
+  var savedListHandled = false;
+  function autoSelectSavedList() {
+    if (savedListHandled) return;
+    if (activePageText().indexOf('spots & food') === -1) return;
+    var scope = getActivePage() || document;
+    var text = scope.innerText || '';
+    var m = text.match(/(\d+)\s*\/\s*(\d+)\s*件表示/);
+    if (!m) return;
+    if (m[2] === '0') {
+      var btns = Array.prototype.slice.call(scope.querySelectorAll('button'));
+      var saved = btns.filter(function (b) { return /^保存\s*\d+$/.test((b.textContent || '').trim()); })[0];
+      if (saved) { saved.click(); savedListHandled = true; }
+    } else {
+      savedListHandled = true; // already showing items; respect user choice
+    }
+  }
+
   function runAll(root) {
     enhanceImages(root);
     enhanceExternalLinks(root);
     enhanceButtons(root);
     markEmptyPlaceholders(root);
     injectEmergencyDetails();
+    autoSelectSavedList();
+    // NOTE: weather / wifi / liveDetails / budget / goods / misokinInfo /
+    // venueCandidates / gourmet hours are now rendered natively inside
+    // kawaii-pro/dist/pages.js (NowPage / Misokin / Goods / Recommended),
+    // so no DOM injection is needed here for them. enhance.js only keeps the
+    // emergency-hospital card (Hotel page) and the candidate-tab auto-select.
   }
 
   // Initial pass
