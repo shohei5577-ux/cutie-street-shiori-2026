@@ -2,15 +2,14 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8"/>
-<title>旅 の しおり ／ CUTIE STREET LIVE 東京 2026.06.16–18</title>
+<title>CUTIE STREET 有明遠征しおり</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<meta name="description" content="CUTIE STREET 東京遠征 2026.06.16-18 の共有用旅行しおり。行程、MAP、交通、候補リストをまとめています。"/>
-<meta name="theme-color" content="#ffe7eb"/>
+<meta name="description" content="CUTIE STREET 有明遠征 2026.06.16-18 の共有用旅行しおり。行程、ライブ情報、グルメをまとめています。"/>
+<meta name="theme-color" content="#ff6fa5"/>
 <meta name="format-detection" content="telephone=no"/>
 <meta name="color-scheme" content="light"/>
 
-<!-- Content Security Policy (modest, GitHub Pages friendly) -->
-<!-- Note: frame-ancestors is intentionally omitted because it has no effect in <meta> tags. -->
+<!-- CSP -->
 <meta http-equiv="Content-Security-Policy" content="
   default-src 'self';
   script-src 'self' 'unsafe-inline';
@@ -20,7 +19,6 @@
   connect-src 'self';
   manifest-src 'self';
   worker-src 'self';
-  frame-src https://maps.google.com https://www.google.com;
   base-uri 'self';
   object-src 'none';
 "/>
@@ -28,16 +26,16 @@
 <!-- Mobile / PWA -->
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
-<meta name="apple-mobile-web-app-title" content="旅のしおり"/>
+<meta name="apple-mobile-web-app-title" content="有明遠征しおり"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <link rel="apple-touch-icon" sizes="192x192" href="assets/icon-192.png"/>
 <link rel="apple-touch-icon" sizes="512x512" href="assets/icon-512.png"/>
 
 <!-- OGP -->
 <meta property="og:type" content="website"/>
-<meta property="og:site_name" content="旅 の しおり"/>
-<meta property="og:title" content="旅 の しおり ／ CUTIE STREET 東京遠征 2026"/>
-<meta property="og:description" content="那覇⇄羽田、有明アリーナ2DAYS、2泊3日の行程・MAP・候補リスト。"/>
+<meta property="og:site_name" content="旅のしおり"/>
+<meta property="og:title" content="CUTIE STREET 有明遠征しおり 2026"/>
+<meta property="og:description" content="有明アリーナ 2DAYS、2泊3日の行程・グルメ候補。"/>
 <meta property="og:url" content="https://shohei5577-ux.github.io/cutie-street-shiori-2026/"/>
 <meta property="og:image" content="https://shohei5577-ux.github.io/cutie-street-shiori-2026/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
@@ -46,25 +44,20 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="旅 の しおり ／ CUTIE STREET 東京遠征 2026"/>
-<meta name="twitter:description" content="行程、MAP、交通、候補リストをまとめた共有用しおり。"/>
+<meta name="twitter:title" content="CUTIE STREET 有明遠征しおり 2026"/>
+<meta name="twitter:description" content="有明アリーナ 2DAYS・2泊3日の行程・グルメ候補。"/>
 <meta name="twitter:image" content="https://shohei5577-ux.github.io/cutie-street-shiori-2026/assets/og-image.png"/>
 
 <!-- Canonical & Icons -->
 <link rel="canonical" href="https://shohei5577-ux.github.io/cutie-street-shiori-2026/"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="mask-icon" href="favicon.svg" color="#ff6b9d"/>
-
-<!-- PWA Manifest -->
 <link rel="manifest" href="manifest.webmanifest"/>
-
-<!-- Preload key asset -->
-<link rel="preload" as="image" href="assets/cover-oshi-trip.png" fetchpriority="high"/>
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@500;700;900&family=Pacifico&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet"/>
 
 <!-- Structured Data: Event -->
 <script type="application/ld+json">
@@ -86,74 +79,822 @@
       "addressCountry": "JP"
     }
   },
-  "performer": {
-    "@type": "MusicGroup",
-    "name": "CUTIE STREET"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "8000",
-    "priceCurrency": "JPY",
-    "availability": "https://schema.org/SoldOut"
-  }
+  "performer": { "@type": "MusicGroup", "name": "CUTIE STREET" }
 }
 </script>
 
-<style>
-  html, body { margin:0; padding:0; height:100%; background:#fbf6f1; overflow:hidden; }
-  body { font-family:'Zen Maru Gothic','Klee One', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color:#3b1f2e; }
-  #root { width:100%; height:100vh; }
-  *, *::before, *::after { box-sizing: border-box; }
-  button { font-family: inherit; }
-  a { color: inherit; }
-  @media (max-width: 760px), (max-height: 720px) {
-    .app-hint { display: none !important; }
-  }
-  @media (max-width: 520px) {
-    .app-brand {
-      top: 12px !important;
-      left: 12px !important;
-      transform: scale(.92);
-      transform-origin: left top;
-    }
-  }
-</style>
-
-<!-- Override stylesheet (a11y / mobile tweaks) -->
-<link rel="stylesheet" href="override.css?v=20260529g"/>
+<link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-<noscript>
-  <div style="padding:40px;font-family:system-ui;color:#3b1f2e;background:#fbf6f1;text-align:center;">
-    <h1>旅 の しおり</h1>
-    <p>このしおりはJavaScriptを有効にしてご覧ください。</p>
-    <p><a href="https://shohei5577-ux.github.io/cutie-street-shiori-2026/">最新版を開く</a></p>
-  </div>
-</noscript>
-<div id="root"></div>
+<div class="phone">
+  <main class="pages">
 
-<!-- React production build (local) -->
-<script src="vendor/react.production.min.js"
-        integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z"
-        crossorigin="anonymous" defer></script>
-<script src="vendor/react-dom.production.min.js"
-        integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1"
-        crossorigin="anonymous" defer></script>
+    <!-- ============================================================
+         TOP
+         ============================================================ -->
+    <section class="page" id="page-top" data-screen-label="TOP">
+      <header class="top-hero">
+        <span class="deco tape tape--pink" style="left:14px;top:14px;transform:rotate(-18deg)"></span>
+        <span class="deco tape tape--dotlav" style="right:10px;top:30px;transform:rotate(14deg)"></span>
+        <span class="deco" style="left:24px;top:78px"><span class="heart heart--gem" style="--s:26px"></span></span>
+        <span class="deco" style="right:28px;top:96px"><span class="star" style="--s:18px;--c:var(--lav)"></span></span>
+        <p class="top-hero__kicker">Travel Itinerary</p>
+        <div class="wordmark">
+          <div class="wordmark__cutie">CUTIE STREET</div>
+          <div class="wordmark__sub">有明遠征しおり</div>
+        </div>
+        <p class="top-hero__dates">2026.06.16 — 06.18</p>
+        <p class="top-hero__meta">東京遠征 / 有明アリーナ 2days</p>
+      </header>
 
-<!-- App (defer preserves order). ?v= = cache-busting; bump on each content update. -->
-<script src="trip-data.js?v=20260529g" defer></script>
-<script src="booklet.compiled.js?v=20260529g" defer></script>
-<script src="kawaii-pro/dist/tweaks-panel.js?v=20260529g" defer></script>
-<script src="kawaii-pro/dist/atoms.js?v=20260529g" defer></script>
-<script src="kawaii-pro/dist/pages.js?v=20260529g" defer></script>
-<script src="kawaii-pro/dist/main.js?v=20260529g" defer></script>
+      <div class="grid">
+        <!-- Flight -->
+        <article class="card card--wide">
+          <div class="card__head">
+            <span class="card__icon icon--pink"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span>
+            <h3 class="card__title t--pink">フライト</h3>
+          </div>
+          <div class="card__body flight">
+            <div class="flight__leg">
+              <span class="pill pill--out">往路</span>
+              <span class="flight__date">6/16（火）</span>
+              <span class="flight__no">SKY510</span>
+              <span class="flight__row"><span class="ap">那覇</span><span class="tm">07:15</span><span class="arw">→</span><span class="ap">羽田</span><span class="tm">09:40</span></span>
+            </div>
+            <div class="flight__leg">
+              <span class="pill pill--lav">復路</span>
+              <span class="flight__date">6/18（木）</span>
+              <span class="flight__no">SKY521</span>
+              <span class="flight__row"><span class="ap">羽田</span><span class="tm">17:05</span><span class="arw">→</span><span class="ap">那覇</span><span class="tm">19:50</span></span>
+            </div>
+          </div>
+        </article>
 
-<!-- A11y / loading enhancements -->
-<script src="enhance.js?v=20260529g" defer></script>
+        <!-- Hotel -->
+        <article class="card card--wide">
+          <div class="card__head">
+            <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6a1 1 0 0 1 2 0v5h6V8a2 2 0 0 1 2-2h4a3 3 0 0 1 3 3v9h-2v-2H5v2H3V6zm4 2.5A1.5 1.5 0 1 1 4 8.5a1.5 1.5 0 0 1 3 0z"/></svg></span>
+            <h3 class="card__title t--lav">ホテル</h3>
+          </div>
+          <div class="card__body">
+            <p style="margin:0;font-weight:700;color:var(--ink-strong);font-size:16px;">アパホテル＆リゾート<br>〈東京ベイ潮見〉</p>
+            <p style="margin:6px 0;color:var(--ink-soft);font-size:13px;">6/16 〜 6/18 ／ 2泊 ／ JR潮見駅 徒歩3分</p>
+            <image-slot id="top-hotel" class="hotel-img" shape="rounded" radius="14" placeholder="ホテル写真をドロップ"></image-slot>
+            <p class="store__loc" style="margin-top:9px;display:flex;align-items:center;gap:4px;font-size:12px;color:var(--ink-soft);font-weight:700;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;color:var(--pink);"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 4.5A2.5 2.5 0 1 0 12 11a2.5 2.5 0 0 0 0-5z"/></svg>東京都江東区潮見</p>
+          </div>
+        </article>
+
+        <!-- Live overview -->
+        <article class="card card--wide card--pink">
+          <div class="card__head">
+            <span class="card__icon icon--pink"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3v12.5a3.5 3.5 0 1 1-2-3.16V7L11 8.6v8.9A3.5 3.5 0 1 1 9 14.34V6z"/></svg></span>
+            <h3 class="card__title">ライブ 2days</h3>
+          </div>
+          <div class="card__body">
+            <div class="live-row">
+              <div class="live-row__d">6/16（火）Day1</div>
+              <div class="live-row__t">開場 16:00 ／ 開演 18:00</div>
+            </div>
+            <div class="live-row live-row--blue">
+              <div class="live-row__d">6/17（水）Day2</div>
+              <div class="live-row__t">開場 15:30 ／ 開演 17:30</div>
+            </div>
+            <p style="display:flex;align-items:flex-start;gap:4px;margin-top:9px;font-size:12px;color:var(--ink-soft);"><svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;flex:0 0 auto;margin-top:1px;color:var(--pink);"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>会場：有明アリーナ ／ CUTIE STREET 単独LIVE -05 STREET-</p>
+          </div>
+        </article>
+
+        <!-- Special schedule -->
+        <article class="card card--wide card--lav">
+          <div class="card__head">
+            <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-4.8 4.3L17.7 21 12 17.3 6.3 21l1.5-7.4L3 9.3l6.4-.7z"/></svg></span>
+            <h3 class="card__title">重要予定 / スペシャル</h3>
+          </div>
+          <div class="card__body">
+            <span class="pill pill--lav" style="background:#ece2fb;">6/17（水）11:00〜11:30</span>
+            <p style="margin:8px 0 4px;font-family:var(--f-head);font-weight:700;font-size:18px;color:var(--lav-deep);">Galaxy Ambassador Webinar</p>
+            <p style="margin:0;font-size:13.5px;">研修・ウェビナー。イヤホンと通信環境を事前に確認。リマインダー設定を忘れずに！</p>
+          </div>
+        </article>
+
+        <!-- 6/18 spots -->
+        <article class="card card--wide">
+          <div class="card__head">
+            <span class="card__icon icon--blue"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3l1-1.5h4L15 3h4a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"/></svg></span>
+            <h3 class="card__title t--blue">6/18 注目スポット</h3>
+          </div>
+          <div class="card__body">
+            <ul class="bul" style="--bullet:var(--blue);">
+              <li><b style="color:var(--blue-deep)">原宿</b> ／ Galaxy Harajuku・ランチ・スイーツ</li>
+              <li><b style="color:var(--blue-deep)">秋葉原</b> ／ ヨドバシAkiba でサウンドバー・AV体感</li>
+            </ul>
+            <p style="margin:8px 0 0;font-size:13px;color:var(--ink-soft);">羽田 17:05 発に遅れないよう、余裕を持って移動！</p>
+          </div>
+        </article>
+
+        <!-- 出発前チェック -->
+        <article class="card card--wide card--pink">
+          <div class="card__head">
+            <span class="card__icon icon--red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2a1 1 0 0 1 1-1zm0 3H6v15h12V5h-3v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5z"/></svg></span>
+            <h3 class="card__title t--red">出発前チェック</h3>
+          </div>
+          <div class="card__body">
+            <div class="todo">
+              <label class="todo__item" data-key="top1"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">フライト時間を再確認</span></label>
+              <label class="todo__item" data-key="top2"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">ホテルのチェックイン確認</span></label>
+              <label class="todo__item" data-key="top3"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">ライブの持ち物チェック</span></label>
+              <label class="todo__item" data-key="top4"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">Webinar リマインダー設定</span></label>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="footer-charm"><span>最高の3日間にしようね♡</span></div>
+    </section>
+
+    <!-- ============================================================
+         6.16 — Day1
+         ============================================================ -->
+    <section class="page" id="page-d16" data-screen-label="6.16 Day1">
+      <header class="hero">
+        <div class="hero__tag">ENJOY!<br>TRIP ♡<small>2026 GOOD MEMORIES</small></div>
+        <span class="deco tape tape--gold" style="right:64px;top:8px;transform:rotate(12deg)"></span>
+        <image-slot id="d16-plane" class="hero__photo" style="width:104px;height:74px;right:8px;top:14px;--rot:5deg" shape="rounded" radius="8" placeholder="✈️ 機内写真"></image-slot>
+        <span class="deco" style="left:18px;top:84px"><span class="heart heart--gem" style="--s:24px"></span></span>
+        <span class="deco" style="right:18px;top:118px"><span class="star" style="--s:16px;--c:var(--lav)"></span></span>
+        <div class="wordmark" style="margin-top:6px;">
+          <div class="wordmark__cutie" style="font-size:40px;">CUTIE STREET</div>
+          <div class="wordmark__sub" style="font-size:22px;">有明遠征しおり</div>
+        </div>
+        <div class="daybanner">
+          <div class="daybanner__title"><b>6.16</b> Day1</div>
+          <div class="daybanner__kind">出発<span class="amp">＆</span>ライブ初日</div>
+          <div class="daybanner__sub">沖縄 <span class="arw">→</span> 東京 ／ 有明アリーナ Day1</div>
+        </div>
+        <div style="text-align:center;margin-top:14px;"><span class="ribbon">2026.06.16</span></div>
+      </header>
+
+      <div class="grid">
+        <!-- 今日の流れ -->
+        <article class="card card--wide">
+          <div class="card__head">
+            <span class="card__icon icon--pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3.2 2"/></svg></span>
+            <h3 class="card__title t--pink">今日の流れ</h3>
+          </div>
+          <div class="card__body">
+            <ul class="flow">
+              <li>那覇空港へ移動</li>
+              <li><span class="t">07:15</span> SKY510 那覇発</li>
+              <li><span class="t">09:40</span> 羽田着</li>
+              <li>ホテルに荷物を預ける（潮見）</li>
+              <li>丸の内 ランチ（THE FRONT ROOM）</li>
+              <li><span class="t">15:00</span> チェックイン・着替え</li>
+              <li><span class="t">15:45</span> ホテル出発</li>
+              <li><span class="t">16:00</span> 開場</li>
+              <li><span class="t">18:00</span> 開演 🎵</li>
+              <li>終演後 外食 <span class="arw">→</span> ホテル</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 移動メモ / ホテル -->
+        <div class="grid grid--2 card--wide" style="box-shadow:none;background:none;padding:0;border:0;">
+          <article class="card card--lav">
+            <div class="card__head">
+              <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3l1.5 3H16l-1.3-3H9.3L8 20H6l1.5-3a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zm-1 4v4h12V6H6zm2.5 6.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zm7 0a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/></svg></span>
+              <h3 class="card__title">移動メモ</h3>
+            </div>
+            <div class="card__body">
+              <ul class="bul bul--lav">
+                <li>那覇空港はモノレール優先</li>
+                <li>雨ならタクシーも検討</li>
+                <li>羽田→潮見は電車予定<br><small style="color:var(--ink-soft)">天王洲アイル・新木場経由</small></li>
+              </ul>
+            </div>
+          </article>
+          <article class="card card--lav">
+            <div class="card__head">
+              <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6a1 1 0 0 1 2 0v5h6V8a2 2 0 0 1 2-2h4a3 3 0 0 1 3 3v9h-2v-2H5v2H3V6zm4 2.5A1.5 1.5 0 1 1 4 8.5a1.5 1.5 0 0 1 3 0z"/></svg></span>
+              <h3 class="card__title">ホテル荷物預け</h3>
+            </div>
+            <div class="card__body">
+              <ul class="bul bul--lav">
+                <li>アパホテル〈東京ベイ潮見〉</li>
+                <li>チェックイン前は荷物預け</li>
+                <li>15:00 チェックイン可</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- 昼ごはん候補 / グッズ -->
+        <div class="grid grid--2 card--wide" style="box-shadow:none;background:none;padding:0;border:0;">
+          <article class="card card--cream">
+            <div class="card__head">
+              <span class="card__icon icon--orange"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg></span>
+              <h3 class="card__title t--orange">昼ごはん</h3>
+            </div>
+            <div class="card__body">
+              <ul class="bul bul--orange">
+                <li><b>THE FRONT ROOM</b><br><small style="color:var(--ink-soft)">丸の内 12:10〜</small></li>
+                <li>＆TOKYO（グランスタ丸の内B1）</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card card--pink">
+            <div class="card__head">
+              <span class="card__icon icon--pink"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 7V6a4 4 0 0 1 8 0v1h3a1 1 0 0 1 1 .92l.83 11A2 2 0 0 1 16.84 21H5.16a2 2 0 0 1-1.99-2.08L4 7.92A1 1 0 0 1 5 7h1zm2 0h4V6a2 2 0 1 0-4 0v1z"/></svg></span>
+              <h3 class="card__title">グッズ</h3>
+            </div>
+            <div class="card__body">
+              <ul class="bul">
+                <li>できれば購入したい</li>
+                <li>混雑状況で判断</li>
+                <li>早め到着で物販列へ</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- ライブ情報 -->
+        <article class="card card--wide" style="background:linear-gradient(180deg,#f3fafe,#e7f4fc);border-color:#cfeaf8;">
+          <div class="card__head">
+            <span class="card__icon icon--blue"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3v12.5a3.5 3.5 0 1 1-2-3.16V7L11 8.6v8.9A3.5 3.5 0 1 1 9 14.34V6z"/></svg></span>
+            <h3 class="card__title t--blue">ライブ情報</h3>
+          </div>
+          <div class="card__body">
+            <div class="info__date" style="color:var(--blue-deep);border-color:#cfe6f5;">6/16（火）Day1</div>
+            <dl class="info">
+              <dt>開場</dt><dd>16:00</dd>
+              <dt>開演</dt><dd>18:00</dd>
+              <dt>会場</dt><dd>有明アリーナ</dd>
+              <dt>座席</dt><dd>チケット確認</dd>
+            </dl>
+          </div>
+        </article>
+
+        <!-- 夜ごはん -->
+        <article class="card card--wide card--lav">
+          <div class="card__head">
+            <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg></span>
+            <h3 class="card__title">夜ごはん</h3>
+          </div>
+          <div class="card__body">
+            <ul class="bul bul--lav">
+              <li>終演後（〜20:30目安）は外食予定</li>
+              <li>有明・豊洲方面で検討</li>
+              <li>混雑ならホテル近くへ切替</li>
+              <li>21:45 ホテル戻り目安</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 今日のチェック -->
+        <article class="card card--wide card--pink">
+          <div class="card__head">
+            <span class="card__icon icon--red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2a1 1 0 0 1 1-1zm0 3H6v15h12V5h-3v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5z"/></svg></span>
+            <h3 class="card__title t--red">今日のチェック</h3>
+          </div>
+          <div class="card__body">
+            <div class="todo">
+              <label class="todo__item" data-key="d16a"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">チケット・身分証</span></label>
+              <label class="todo__item" data-key="d16b"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">ホテルアクセス</span></label>
+              <label class="todo__item" data-key="d16c"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">スマホ・充電器</span></label>
+              <label class="todo__item" data-key="d16d"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">Suica残高確認</span></label>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="footer-charm"><span>今日も最高の遠征日和にしよーっ♡</span></div>
+    </section>
+
+    <!-- ============================================================
+         6.17 — Day2
+         ============================================================ -->
+    <section class="page" id="page-d17" data-screen-label="6.17 Day2">
+      <header class="hero">
+        <div class="hero__tag">ENJOY!<br>TRIP ♡<small>2026 GOOD MEMORIES</small></div>
+        <span class="deco tape tape--dotpink" style="right:58px;top:6px;transform:rotate(-10deg)"></span>
+        <image-slot id="d17-food" class="hero__photo" style="width:104px;height:74px;right:8px;top:14px;--rot:5deg" shape="rounded" radius="8" placeholder="☕️ 朝食写真"></image-slot>
+        <span class="deco" style="left:18px;top:84px"><span class="heart" style="--s:22px;--c:var(--blue)"></span></span>
+        <span class="deco" style="right:20px;top:118px"><span class="star" style="--s:15px;--c:var(--lav)"></span></span>
+        <div class="wordmark" style="margin-top:6px;">
+          <div class="wordmark__cutie" style="font-size:40px;">CUTIE STREET</div>
+          <div class="wordmark__sub" style="font-size:22px;">有明遠征しおり</div>
+        </div>
+        <div class="daybanner">
+          <div class="daybanner__title"><b>6.17</b> Day2</div>
+          <div class="daybanner__kind">研修<span class="amp">＆</span>ライブ2日目</div>
+          <div class="daybanner__sub">池袋 <span class="arw">→</span> 有明アリーナ Day2</div>
+        </div>
+        <div style="text-align:center;margin-top:14px;"><span class="ribbon">2026.06.17</span></div>
+      </header>
+
+      <div class="grid">
+        <!-- 今日のまとめ -->
+        <article class="card card--wide card--pink">
+          <div class="card__head">
+            <span class="card__icon icon--red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2a1 1 0 0 1 1-1zm0 3H6v15h12V5h-3v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5z"/></svg></span>
+            <h3 class="card__title t--red">今日のまとめ</h3>
+          </div>
+          <div class="card__body">
+            <ul class="checks">
+              <li>池袋で朝食と研修準備</li>
+              <li>Galaxy Ambassador Webinar を受ける（11:00〜11:30）</li>
+              <li>みそきん候補をチェック（11:40 or 12:20）</li>
+              <li>14:15 出発リミット → 有明アリーナ Day2</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 今日の流れ -->
+        <article class="card card--wide">
+          <div class="card__head">
+            <span class="card__icon icon--pink"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3l1.5 3H16l-1.3-3H9.3L8 20H6l1.5-3a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3zm-1 4v4h12V6H6zm2.5 6.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zm7 0a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/></svg></span>
+            <h3 class="card__title t--pink">今日の流れ</h3>
+          </div>
+          <div class="card__body">
+            <ul class="flow">
+              <li>朝食</li>
+              <li><span class="t">09:45</span> ホテル発 → 池袋</li>
+              <li><span class="t">10:45</span> 池袋着 / 研修準備</li>
+              <li><span class="t">11:00〜11:30</span> <b>Galaxy Ambassador Webinar</b></li>
+              <li><span class="t">11:40</span> みそきん第一希望</li>
+              <li><span class="t">12:20</span> みそきん第二希望（保険）</li>
+              <li><span class="t">13:10</span> 原宿/表参道ミニ枠（取れた時だけ）</li>
+              <li><span class="t">14:15</span> 出発リミット → 有明方面</li>
+              <li><span class="t">15:30</span> 開場</li>
+              <li><span class="t">17:30</span> 開演 🎵</li>
+              <li>終演後 外食 <span class="arw">→</span> ホテル</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 朝食候補 / 研修メモ -->
+        <div class="grid grid--2 card--wide" style="box-shadow:none;background:none;padding:0;border:0;">
+          <article class="card card--cream">
+            <div class="card__head">
+              <span class="card__icon icon--orange"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg></span>
+              <h3 class="card__title t--orange">朝食候補</h3>
+            </div>
+            <div class="card__body">
+              <span class="pill pill--orange">未定</span>
+              <ul class="bul bul--orange" style="margin-top:9px;">
+                <li>ホテル外で食べたい</li>
+                <li>池袋方面で検討</li>
+                <li>研修前に入りやすい店を選ぶ</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card card--lav">
+            <div class="card__head">
+              <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v9h-2V5H7v9H5V5zM2 16h20l-1 2.2A2 2 0 0 1 19.2 19.5H4.8A2 2 0 0 1 3 18.2z"/></svg></span>
+              <h3 class="card__title">研修メモ</h3>
+            </div>
+            <div class="card__body">
+              <ul class="bul bul--lav">
+                <li>イヤホン・通信環境を確認</li>
+                <li>池袋カフェで受ける想定</li>
+                <li>スタバ西口店 / シアトルズベスト</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- みそきん / ライブ情報 -->
+        <div class="grid grid--2 card--wide" style="box-shadow:none;background:none;padding:0;border:0;">
+          <article class="card card--lav">
+            <div class="card__head">
+              <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 11h20v1a9 9 0 0 1-5.3 8.2A2 2 0 0 1 14.8 22H9.2a2 2 0 0 1-1.9-1.8A9 9 0 0 1 2 12v-1z"/></svg></span>
+              <h3 class="card__title">みそきん</h3>
+            </div>
+            <div class="card__body">
+              <span class="pill" style="background:linear-gradient(135deg,#ffb43e,#ef7e12);color:#fff;">S RANK</span>
+              <ul class="bul" style="margin-top:9px;">
+                <li>予約が取れたら必ず行く</li>
+                <li>LivePocket で確認</li>
+                <li>11:40 / 12:20 狙い</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card" style="background:linear-gradient(180deg,#f3fafe,#e7f4fc);border-color:#cfeaf8;">
+            <div class="card__head">
+              <span class="card__icon icon--blue"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3v12.5a3.5 3.5 0 1 1-2-3.16V7L11 8.6v8.9A3.5 3.5 0 1 1 9 14.34V6z"/></svg></span>
+              <h3 class="card__title t--blue">ライブ情報</h3>
+            </div>
+            <div class="card__body">
+              <div class="info__date" style="color:var(--blue-deep);border-color:#cfe6f5;">6/17（水）Day2</div>
+              <dl class="info">
+                <dt>開場</dt><dd>15:30</dd>
+                <dt>開演</dt><dd>17:30</dd>
+                <dt>会場</dt><dd>有明アリーナ</dd>
+                <dt>座席</dt><dd>チケット確認</dd>
+              </dl>
+            </div>
+          </article>
+        </div>
+
+        <!-- 夜ごはん -->
+        <article class="card card--wide card--lav">
+          <div class="card__head">
+            <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg></span>
+            <h3 class="card__title">夜ごはん</h3>
+          </div>
+          <div class="card__body">
+            <ul class="bul bul--lav">
+              <li>有明ガーデンで外食（終演〜20:45目安）</li>
+              <li>混雑なら豊洲/ホテル方面へ切替</li>
+              <li>翌日は帰宅日なので無理しすぎない</li>
+              <li>22:00 ホテル戻り目安</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 今日のチェック -->
+        <article class="card card--wide card--pink">
+          <div class="card__head">
+            <span class="card__icon icon--red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2a1 1 0 0 1 1-1zm0 3H6v15h12V5h-3v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5z"/></svg></span>
+            <h3 class="card__title t--red">今日のチェック</h3>
+          </div>
+          <div class="card__body">
+            <div class="todo">
+              <label class="todo__item" data-key="d17a"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">研修URLを確認</span></label>
+              <label class="todo__item" data-key="d17b"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">チケット・身分証</span></label>
+              <label class="todo__item" data-key="d17c"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">イヤホン・充電</span></label>
+              <label class="todo__item" data-key="d17d"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">みそきん予約確認</span></label>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="footer-charm"><span>今日も最高の遠征日和にしよーっ♡</span></div>
+    </section>
+
+    <!-- ============================================================
+         6.18 — Day3
+         ============================================================ -->
+    <section class="page" id="page-d18" data-screen-label="6.18 Day3">
+      <header class="hero">
+        <div class="hero__tag">ENJOY!<br>TRIP ✈</div>
+        <span class="deco tape tape--dotpink" style="right:56px;top:6px;transform:rotate(10deg)"></span>
+        <image-slot id="d18-sky" class="hero__photo" style="width:104px;height:74px;right:8px;top:14px;--rot:5deg" shape="rounded" radius="8" placeholder="✈️ 空の写真"></image-slot>
+        <span class="deco" style="left:18px;top:84px"><span class="heart heart--gem" style="--s:24px"></span></span>
+        <span class="deco" style="right:20px;top:120px"><span class="star" style="--s:15px;--c:var(--pink-soft)"></span></span>
+        <div class="wordmark" style="margin-top:6px;">
+          <div class="wordmark__cutie" style="font-size:40px;">CUTIE STREET</div>
+          <div class="wordmark__sub" style="font-size:22px;">有明遠征しおり</div>
+        </div>
+        <div class="daybanner">
+          <div class="daybanner__title"><b>6.18</b> Day3</div>
+          <div class="daybanner__kind">原宿 <span class="arw">→</span> 秋葉原 <span class="arw">→</span> 羽田</div>
+          <div class="daybanner__sub">帰宅日 ／ Galaxy Harajuku ／ AV体感</div>
+        </div>
+        <div style="text-align:center;margin-top:14px;"><span class="ribbon">2026.06.18</span></div>
+      </header>
+
+      <!-- route strip -->
+      <div class="route">
+        <div class="route__stop"><span class="lbl">原宿</span><image-slot id="d18-rt1" shape="rounded" radius="10" placeholder="原宿"></image-slot></div>
+        <div class="route__arw">→</div>
+        <div class="route__stop"><span class="lbl">秋葉原</span><image-slot id="d18-rt2" shape="rounded" radius="10" placeholder="秋葉原"></image-slot></div>
+        <div class="route__arw">→</div>
+        <div class="route__stop"><span class="lbl">羽田</span><image-slot id="d18-rt3" shape="rounded" radius="10" placeholder="羽田"></image-slot></div>
+      </div>
+
+      <div class="grid">
+        <!-- 今日のまとめ -->
+        <article class="card card--wide card--pink">
+          <div class="card__head">
+            <span class="card__icon icon--red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2a1 1 0 0 1 1-1zm0 3H6v15h12V5h-3v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5z"/></svg></span>
+            <h3 class="card__title t--red">今日のまとめ</h3>
+          </div>
+          <div class="card__body">
+            <ul class="checks">
+              <li>原宿を優先（Galaxy Harajuku + ランチ・スイーツ）</li>
+              <li>ヨドバシAkiba でサウンドバー確認（12:10 終了リミット）</li>
+              <li>17:05 羽田発に遅れない（15:00〜移動意識）</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- チェックアウト・荷物 / 朝食候補 -->
+        <div class="grid grid--2 card--wide" style="box-shadow:none;background:none;padding:0;border:0;">
+          <article class="card card--lav">
+            <div class="card__head">
+              <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6a1 1 0 0 1 2 0v5h6V8a2 2 0 0 1 2-2h4a3 3 0 0 1 3 3v9h-2v-2H5v2H3V6zm4 2.5A1.5 1.5 0 1 1 4 8.5a1.5 1.5 0 0 1 3 0z"/></svg></span>
+              <h3 class="card__title">チェックアウト</h3>
+            </div>
+            <div class="card__body">
+              <ul class="bul bul--lav">
+                <li>10:00 チェックアウト</li>
+                <li>大きい荷物はコインロッカー検討</li>
+                <li>13:30 荷物回収</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card card--cream">
+            <div class="card__head">
+              <span class="card__icon icon--orange"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg></span>
+              <h3 class="card__title t--orange">朝食候補</h3>
+            </div>
+            <div class="card__body">
+              <span class="pill pill--orange">未定</span>
+              <ul class="bul bul--orange" style="margin-top:9px;">
+                <li>ホテル外で食べたい</li>
+                <li>候補は後で決める</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- Galaxy Harajuku -->
+        <article class="card card--wide card--lav">
+          <div class="card__head">
+            <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 11V4a1 1 0 0 1 1-1h7l9 9a2 2 0 0 1 0 2.8l-6.2 6.2a2 2 0 0 1-2.8 0L3 12a1 1 0 0 1 0-1zm4-5a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg></span>
+            <h3 class="card__title">Galaxy Harajuku</h3>
+          </div>
+          <div class="card__body" style="display:grid;grid-template-columns:1fr 116px;gap:12px;align-items:center;">
+            <div>
+              <p style="margin:0 0 6px;font-weight:700;color:var(--lav-deep);font-size:16px;">11:00 〜</p>
+              <ul class="bul bul--lav" style="margin:0;">
+                <li>見たいものを事前にチェック</li>
+                <li>体験コーナーを満喫</li>
+              </ul>
+            </div>
+            <image-slot id="d18-galaxy" style="width:116px;height:88px;display:block;" shape="rounded" radius="12" placeholder="Galaxy"></image-slot>
+          </div>
+        </article>
+
+        <!-- 原宿ランチ・スイーツ / AV体感 -->
+        <div class="grid grid--2 card--wide" style="box-shadow:none;background:none;padding:0;border:0;">
+          <article class="card card--pink">
+            <div class="card__head">
+              <span class="card__icon icon--pink"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg></span>
+              <h3 class="card__title">原宿ランチ・スイーツ</h3>
+            </div>
+            <div class="card__body">
+              <ul class="bul">
+                <li>Age.3×Q HARAJUKU</li>
+                <li>CHAVATY 表参道</li>
+                <li>軽めに</li>
+              </ul>
+              <image-slot id="d18-harajuku" style="width:100%;height:70px;display:block;margin-top:9px;" shape="rounded" radius="12" placeholder="スイーツ"></image-slot>
+            </div>
+          </article>
+          <article class="card card--lav">
+            <div class="card__head">
+              <span class="card__icon icon--lav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2.5" width="12" height="19" rx="3"/><circle cx="12" cy="15" r="3.2"/><circle cx="12" cy="6.5" r="1.2" fill="currentColor"/></svg></span>
+              <h3 class="card__title">ヨドバシAkiba</h3>
+            </div>
+            <div class="card__body">
+              <ul class="bul bul--lav">
+                <li>JBL / Sonos</li>
+                <li>テレビ / ホームシアター</li>
+                <li>12:10 終了リミット</li>
+              </ul>
+              <image-slot id="d18-av" style="width:100%;height:70px;display:block;margin-top:9px;" shape="rounded" radius="12" placeholder="サウンドバー"></image-slot>
+            </div>
+          </article>
+        </div>
+
+        <!-- サウンドバー試聴チェック -->
+        <article class="card card--wide">
+          <div class="card__head">
+            <span class="card__icon icon--blue"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h4l5-4v14l-5-4H3z"/><path d="M16 8a4 4 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+            <h3 class="card__title t--blue">サウンドバー試聴チェック</h3>
+          </div>
+          <div class="card__body">
+            <div class="todo">
+              <label class="todo__item" data-key="d18s1"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">音の広がり</span></label>
+              <label class="todo__item" data-key="d18s2"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">低音の量感</span></label>
+              <label class="todo__item" data-key="d18s3"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">セリフの聞き取り</span></label>
+              <label class="todo__item" data-key="d18s4"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">設置イメージ</span></label>
+            </div>
+          </div>
+        </article>
+
+        <!-- 羽田リミット -->
+        <article class="card card--wide" style="background:linear-gradient(180deg,#fff0f3,#ffdde6);border-color:#ffc2cf;">
+          <div class="card__head">
+            <span class="card__icon icon--red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span>
+            <h3 class="card__title t--red">羽田 17:05 発リミット</h3>
+          </div>
+          <div class="card__body" style="display:grid;grid-template-columns:1fr 116px;gap:12px;align-items:center;">
+            <div>
+              <ul class="bul" style="--bullet:var(--heart);margin:0 0 8px;">
+                <li>15:00 頃には移動意識</li>
+                <li>那覇 19:50 着</li>
+              </ul>
+              <span class="pill pill--in">SKY521</span> <span class="pill pill--gray">羽田 17:05 発</span>
+            </div>
+            <image-slot id="d18-haneda" style="width:116px;height:88px;display:block;" shape="rounded" radius="12" placeholder="空港"></image-slot>
+          </div>
+        </article>
+
+        <!-- 今日のチェック -->
+        <article class="card card--wide card--pink">
+          <div class="card__head">
+            <span class="card__icon icon--red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 2h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2a1 1 0 0 1 1-1zm0 3H6v15h12V5h-3v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5z"/></svg></span>
+            <h3 class="card__title t--red">今日のチェック</h3>
+          </div>
+          <div class="card__body">
+            <div class="todo">
+              <label class="todo__item" data-key="d18a"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">忘れ物チェック</span></label>
+              <label class="todo__item" data-key="d18b"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">スマホ充電</span></label>
+              <label class="todo__item" data-key="d18c"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">羽田ターミナル確認</span></label>
+              <label class="todo__item" data-key="d18d"><span class="todo__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="todo__label">搭乗券準備</span></label>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="footer-charm"><span>たくさん楽しんで、最高の思い出にしよう！♡</span></div>
+    </section>
+
+    <!-- ============================================================
+         グルメ
+         ============================================================ -->
+    <section class="page" id="page-gourmet" data-screen-label="グルメ">
+      <header class="gourmet-hero">
+        <span class="deco" style="left:14px;top:54px"><span class="star" style="--s:14px;--c:var(--pink-soft)"></span></span>
+        <span class="deco spark" style="right:24px;top:30px;--s:20px;--c:var(--pink-soft)">✦</span>
+        <span class="card__icon icon--pink" style="margin:0 auto 4px;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg></span>
+        <div class="gourmet-hero__title">GOURMET</div>
+        <div class="gourmet-hero__jp">グルメ候補</div>
+        <p class="gourmet-hero__script" style="margin:6px 0 0;">Have a Great Trip!</p>
+      </header>
+
+      <!-- category buttons -->
+      <div class="gcat">
+        <button class="gcat__btn is-active"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4 2 2 0 0 1-1 1.73V20a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V7.73A2 2 0 0 1 6 6z"/></svg><span>朝食</span></button>
+        <button class="gcat__btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg><span>ランチ</span></button>
+        <button class="gcat__btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 2h2v2.2c2.3.4 4 1.8 4 3.3v1.5H7V7.5c0-1.5 1.7-2.9 4-3.3V2zM5 11h14a1 1 0 0 1 1 1l-1 8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1l-1-8a1 1 0 0 1 1-1z"/></svg><span>スイーツ</span></button>
+        <button class="gcat__btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.5C.9 9.7 2.06 6 5.4 6c1.96 0 3.2 1.2 3.9 2.2.7-1 1.94-2.2 3.9-2.2 3.34 0 4.5 3.7 2.73 6.5C18.7 16.65 12 21 12 21z"/></svg><span>行ってみたい</span></button>
+      </div>
+
+      <!-- feature -->
+      <div class="feature">
+        <image-slot id="g-feature" placeholder="朝食イメージ"></image-slot>
+        <div class="feature__veil">
+          <span class="feature__tag">朝食候補 <small>（未定）</small></span>
+          <h3 class="feature__h">ホテル外で<br>朝ごはんを楽しもう！</h3>
+          <p class="feature__p">Google マップの朝食リストから<br>6/17・6/18 の朝食を選定します</p>
+        </div>
+        <span class="feature__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      </div>
+
+      <!-- google maps note -->
+      <div class="gmaps-note">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 4.5A2.5 2.5 0 1 0 12 11a2.5 2.5 0 0 0 0-5z"/></svg>
+        <span><b>Google マップ 保存リスト</b>と連携予定。保存済みの候補をここに追加していけます。朝食リスト・行きたい店リストから随時アップデート。</span>
+      </div>
+
+      <!-- area search -->
+      <div class="sec-head">
+        <span class="sec-head__l"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>エリアから探す</span>
+      </div>
+      <div class="area">
+        <div class="area__card"><image-slot id="g-area1" placeholder="池袋"></image-slot><div class="area__cap"><b>池袋</b><small>（6/17予定）</small></div></div>
+        <div class="area__card"><image-slot id="g-area2" placeholder="原宿"></image-slot><div class="area__cap"><b>原宿・表参道</b><small>（6/18予定）</small></div></div>
+        <div class="area__card"><image-slot id="g-area3" placeholder="有明"></image-slot><div class="area__cap"><b>有明・豊洲</b><small>（ライブ後）</small></div></div>
+      </div>
+
+      <!-- popular -->
+      <div class="sec-head">
+        <span class="sec-head__l"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l4 4 5-7 5 7 4-4-2 12H5L3 7z"/></svg>人気・注目のお店</span>
+      </div>
+      <div class="stores">
+        <!-- S: みそきん -->
+        <article class="store">
+          <div class="store__media"><image-slot id="g-s-misokin" placeholder="みそきん"></image-slot><span class="store__rank rank-S">S</span></div>
+          <div class="store__body">
+            <p class="store__name">みそきん池袋店 <small>（ラーメン）</small></p>
+            <div class="store__tags"><span class="pill pill--gray">池袋</span><span class="pill pill--in">ラーメン</span></div>
+            <p class="store__desc">濃厚味噌スープが人気の話題店！予約が取れたら必ず行きたい。11:40 or 12:20 狙い。</p>
+            <div class="store__foot">
+              <span class="store__loc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>池袋 ／ 6/17予定</span>
+              <button class="store__fav" data-key="misokin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.5C.9 9.7 2.06 6 5.4 6c1.96 0 3.2 1.2 3.9 2.2.7-1 1.94-2.2 3.9-2.2 3.34 0 4.5 3.7 2.73 6.5C18.7 16.65 12 21 12 21z"/></svg></button>
+            </div>
+          </div>
+        </article>
+        <!-- A: Age.3×Q -->
+        <article class="store">
+          <div class="store__media"><image-slot id="g-a-age3q" placeholder="Age.3×Q"></image-slot><span class="store__rank rank-A">A</span></div>
+          <div class="store__body">
+            <p class="store__name">Age.3×Q HARAJUKU <small>（いちごパフェ・他）</small></p>
+            <div class="store__tags"><span class="pill pill--gray">原宿</span><span class="pill pill--in">スイーツ・カフェ</span></div>
+            <p class="store__desc">いちご好きにたまらない♡ 6/18 原宿ミニ枠で寄りたい。</p>
+            <div class="store__foot">
+              <span class="store__loc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>原宿 ／ 6/18予定</span>
+              <button class="store__fav" data-key="age3q"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.5C.9 9.7 2.06 6 5.4 6c1.96 0 3.2 1.2 3.9 2.2.7-1 1.94-2.2 3.9-2.2 3.34 0 4.5 3.7 2.73 6.5C18.7 16.65 12 21 12 21z"/></svg></button>
+            </div>
+          </div>
+        </article>
+        <!-- A: CHAVATY -->
+        <article class="store">
+          <div class="store__media"><image-slot id="g-a-chavaty" placeholder="CHAVATY"></image-slot><span class="store__rank rank-A">A</span></div>
+          <div class="store__body">
+            <p class="store__name">CHAVATY 表参道 <small>（紅茶・スコーン）</small></p>
+            <div class="store__tags"><span class="pill pill--gray">表参道</span><span class="pill pill--in">カフェ</span></div>
+            <p class="store__desc">本格スコーン＆紅茶。表参道ミニ枠の候補。</p>
+            <div class="store__foot">
+              <span class="store__loc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>表参道 ／ 6/18予定</span>
+              <button class="store__fav" data-key="chavaty"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.5C.9 9.7 2.06 6 5.4 6c1.96 0 3.2 1.2 3.9 2.2.7-1 1.94-2.2 3.9-2.2 3.34 0 4.5 3.7 2.73 6.5C18.7 16.65 12 21 12 21z"/></svg></button>
+            </div>
+          </div>
+        </article>
+        <!-- A: THE FRONT ROOM -->
+        <article class="store">
+          <div class="store__media"><image-slot id="g-a-frontroom" placeholder="THE FRONT ROOM"></image-slot><span class="store__rank rank-A">A</span></div>
+          <div class="store__body">
+            <p class="store__name">THE FRONT ROOM <small>（カフェ・ランチ）</small></p>
+            <div class="store__tags"><span class="pill pill--gray">丸の内</span><span class="pill pill--in">ランチ</span></div>
+            <p class="store__desc">丸ビル1F。6/16 到着日ランチの第一候補。フレンチトーストが人気。</p>
+            <div class="store__foot">
+              <span class="store__loc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>丸の内 ／ 6/16予定</span>
+              <button class="store__fav" data-key="frontroom"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.5C.9 9.7 2.06 6 5.4 6c1.96 0 3.2 1.2 3.9 2.2.7-1 1.94-2.2 3.9-2.2 3.34 0 4.5 3.7 2.73 6.5C18.7 16.65 12 21 12 21z"/></svg></button>
+            </div>
+          </div>
+        </article>
+        <!-- B: WAGYU BURGER HIROKIYA -->
+        <article class="store">
+          <div class="store__media"><image-slot id="g-b-wagyu" placeholder="WAGYU BURGER"></image-slot><span class="store__rank rank-B">B</span></div>
+          <div class="store__body">
+            <p class="store__name">WAGYU BURGER HIROKIYA</p>
+            <div class="store__tags"><span class="pill pill--gray">都内</span><span class="pill pill--in">バーガー</span></div>
+            <p class="store__desc">贅沢な和牛バーガーを味わえるお店。</p>
+            <div class="store__foot">
+              <span class="store__loc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>都内</span>
+              <button class="store__fav" data-key="wagyuburger"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.5C.9 9.7 2.06 6 5.4 6c1.96 0 3.2 1.2 3.9 2.2.7-1 1.94-2.2 3.9-2.2 3.34 0 4.5 3.7 2.73 6.5C18.7 16.65 12 21 12 21z"/></svg></button>
+            </div>
+          </div>
+        </article>
+        <!-- B: &TOKYO -->
+        <article class="store">
+          <div class="store__media"><image-slot id="g-b-andtokyo" placeholder="&TOKYO"></image-slot><span class="store__rank rank-B">B</span></div>
+          <div class="store__body">
+            <p class="store__name">&amp;TOKYO <small>（生ドーナツ）</small></p>
+            <div class="store__tags"><span class="pill pill--gray">東京駅</span><span class="pill pill--in">スイーツ</span></div>
+            <p class="store__desc">グランスタ丸の内B1F。6/16 ライブ前の糖分候補。</p>
+            <div class="store__foot">
+              <span class="store__loc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>東京駅 ／ 6/16予定</span>
+              <button class="store__fav" data-key="andtokyo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.5C.9 9.7 2.06 6 5.4 6c1.96 0 3.2 1.2 3.9 2.2.7-1 1.94-2.2 3.9-2.2 3.34 0 4.5 3.7 2.73 6.5C18.7 16.65 12 21 12 21z"/></svg></button>
+            </div>
+          </div>
+        </article>
+        <!-- C: フライング・スコッツマン -->
+        <article class="store">
+          <div class="store__media"><image-slot id="g-c-scots" placeholder="スコッツマン"></image-slot><span class="store__rank rank-C">C</span></div>
+          <div class="store__body">
+            <p class="store__name">フライング・スコッツマン <small>（カフェ）</small></p>
+            <div class="store__tags"><span class="pill pill--gray">秋葉原</span><span class="pill pill--in">カフェ</span></div>
+            <p class="store__desc">秋葉原での外食/カフェ候補。6/18 ヨドバシ後に。</p>
+            <div class="store__foot">
+              <span class="store__loc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>秋葉原 ／ 6/18予定</span>
+              <button class="store__fav" data-key="scots"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.5C.9 9.7 2.06 6 5.4 6c1.96 0 3.2 1.2 3.9 2.2.7-1 1.94-2.2 3.9-2.2 3.34 0 4.5 3.7 2.73 6.5C18.7 16.65 12 21 12 21z"/></svg></button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="footer-charm"><span>美味しいもの、いっぱい食べよ♡</span></div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       TAB BAR
+       ============================================================ -->
+  <nav class="tabbar">
+    <button class="tab" data-tab="top">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 10v11h6v-6h6v6h6V10z"/></svg>
+      <span class="tab__lbl">TOP</span>
+    </button>
+    <button class="tab" data-tab="d16">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zM5 9h14v10H5V9z"/></svg>
+      <span class="tab__lbl">6.16</span><span class="tab__sub">Day1</span>
+    </button>
+    <button class="tab" data-tab="d17">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zM5 9h14v10H5V9z"/></svg>
+      <span class="tab__lbl">6.17</span><span class="tab__sub">Day2</span>
+    </button>
+    <button class="tab" data-tab="d18">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zM5 9h14v10H5V9z"/></svg>
+      <span class="tab__lbl">6.18</span><span class="tab__sub">Day3</span>
+    </button>
+    <button class="tab" data-tab="gourmet">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v6a3 3 0 0 1-2 2.83V21a1 1 0 1 1-2 0v-8.17A3 3 0 0 1 3 9V3a1 1 0 1 1 2 0v6a1 1 0 0 0 2 0V3a1 1 0 0 1 1-1zm9 0a1 1 0 0 1 1 1v18a1 1 0 1 1-2 0v-7h-1a1 1 0 0 1-1-1V7a5 5 0 0 1 3-5z"/></svg>
+      <span class="tab__lbl">グルメ</span>
+    </button>
+  </nav>
+</div>
+
+<script src="image-slot.js" defer></script>
+<script src="app.js" defer></script>
 
 <!-- Service Worker registration -->
 <script>
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && /^https?:$/.test(window.location.protocol)) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('./sw.js').catch(function(err) {
       console.warn('SW registration failed:', err);

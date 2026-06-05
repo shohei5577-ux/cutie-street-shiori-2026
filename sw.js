@@ -7,7 +7,7 @@
  *   - Offline fallback: cached index.html
  */
 
-const VERSION = 'shiori-v8-2026-06';
+const VERSION = 'shiori-v10-2026-06';
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 
@@ -16,16 +16,9 @@ const PRECACHE_URLS = [
   './index.html',
   './manifest.webmanifest',
   './favicon.svg',
-  './override.css',
-  './enhance.js',
-  './booklet.compiled.js',
-  './trip-data.js',
-  './vendor/react.production.min.js',
-  './vendor/react-dom.production.min.js',
-  './kawaii-pro/dist/atoms.js',
-  './kawaii-pro/dist/pages.js',
-  './kawaii-pro/dist/main.js',
-  './kawaii-pro/dist/tweaks-panel.js',
+  './styles.css',
+  './app.js',
+  './image-slot.js',
   './assets/cover-oshi-trip.png',
   './assets/og-bg-generated.png',
   './assets/og-image.png',
