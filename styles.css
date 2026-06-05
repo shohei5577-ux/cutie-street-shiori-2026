@@ -500,3 +500,102 @@ body {
 /* footer charm under content */
 .footer-charm { text-align:center; padding: 14px 0 4px; }
 .footer-charm span { font-family: var(--f-script); color: var(--pink); font-size: 16px; }
+
+/* =========================================================
+   RESPONSIVE — PC / Tablet (≥ 768px)
+   Phone frame widens. .phone becomes flex row: sidebar + scrollable content.
+   ========================================================= */
+@media (min-width: 768px) {
+  /* Widen frame */
+  body { padding: 24px 0; }
+  .phone {
+    max-width: 900px;
+    height: calc(100vh - 48px);  /* fixed height so inner areas can scroll */
+    min-height: 0;
+    border-radius: 20px;
+    border: 5px solid #fff;
+    /* Flex row: sidebar | content */
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    /* overflow:hidden stays — clips border-radius and decorations */
+  }
+
+  /* Content area becomes the scroll container */
+  .pages {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 28px 32px 24px;
+    min-width: 0;
+    height: 100%;
+  }
+
+  /* Tabbar → left sidebar (order:-1 renders it before .pages in DOM) */
+  .tabbar {
+    order: -1;
+    /* Reset mobile fixed positioning */
+    position: relative;
+    left: auto; bottom: auto; top: auto;
+    transform: none;
+    width: 176px;
+    min-width: 176px;
+    max-width: 176px;
+    flex-shrink: 0;
+    height: 100%;
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 28px 10px 24px;
+    border-top: none;
+    border-right: 2px solid #ffd9e6;
+    border-radius: 0;
+    background: linear-gradient(180deg, #fff7fb 0%, #ffedf4 100%);
+    backdrop-filter: blur(8px);
+    box-shadow: 4px 0 14px -6px rgba(214, 40, 110, .18);
+  }
+
+  /* Sidebar brand header */
+  .tabbar::before {
+    content: "♡";
+    display: block;
+    text-align: center;
+    font-size: 22px;
+    color: var(--pink);
+    margin-bottom: 16px;
+    opacity: .7;
+  }
+
+  /* Tabs become horizontal label rows */
+  .tab {
+    flex: 0 0 auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: 12px;
+    margin-bottom: 4px;
+  }
+  .tab__lbl { font-size: 13px; }
+  .tab__sub { display: none; }
+  .tab.is-active { transform: none; }
+  .tab svg { width: 22px; height: 22px; }
+
+  /* Grid columns */
+  .grid--2 { grid-template-columns: repeat(3, 1fr); }
+  .grid--3 { grid-template-columns: repeat(4, 1fr); }
+  .gcat    { grid-template-columns: repeat(5, 1fr); }
+  .area    { grid-template-columns: repeat(4, 1fr); }
+  .todo    { grid-template-columns: repeat(3, 1fr); }
+
+  /* Typography */
+  .wordmark__cutie  { font-size: 64px; }
+  .wordmark__sub    { font-size: 32px; }
+  .card__title      { font-size: 21px; }
+  .daybanner__title { font-size: 28px; }
+  .gourmet-hero__title { font-size: 64px; }
+
+  /* Hero heights */
+  .top-hero { padding-top: 36px; }
+}
