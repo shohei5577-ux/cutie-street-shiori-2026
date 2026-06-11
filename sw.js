@@ -1,13 +1,17 @@
-/* Service Worker for 旅のしおり (CUTIE STREET 東京遠征 2026) */
+/* Service Worker — CUTIE STREET 有明遠征しおり 2026 */
 /* Strategy:
- *   - Precache: app shell (HTML / JS / CSS / fonts / icons / cover image)
- *   - HTML & trip-data.js: network-first (avoid stale itinerary)
- *   - Other same-origin: cache-first (immutable-like assets)
+ *   - Precache: app shell(HTML / JS / CSS / icons のみ。大型画像は入れない)
+ *   - HTML / manifest: network-first(行程の鮮度を優先)
+ *   - CSS / JS: stale-while-revalidate(即表示しつつ裏で更新)
+ *   - その他同一オリジン: cache-first
  *   - Google Fonts: stale-while-revalidate
- *   - Offline fallback: cached index.html
+ *   - オフライン時: キャッシュした index.html
+ *
+ *   ★デプロイのたびに VERSION を必ず上げること。
+ *    上げ忘れると既存訪問者に旧 CSS/JS が配信され続ける。
  */
 
-const VERSION = 'shiori-v10-2026-06';
+const VERSION = 'shiori-v12-2026-06';
 const PRECACHE = `${VERSION}-precache`;
 const RUNTIME = `${VERSION}-runtime`;
 
@@ -19,9 +23,6 @@ const PRECACHE_URLS = [
   './styles.css',
   './app.js',
   './image-slot.js',
-  './assets/cover-oshi-trip.png',
-  './assets/og-bg-generated.png',
-  './assets/og-image.png',
   './assets/icon-192.png',
   './assets/icon-512.png'
 ];
@@ -52,11 +53,9 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
 
-  // Navigations: network-first (with offline fallback)
+  // ナビゲーション: network-first(オフライン時は index.html)
   if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request).catch(() => caches.match('./index.html'))
-    );
+    event.respondWith(fetch(request).catch(() => caches.match('./index.html')));
     return;
   }
 
@@ -66,26 +65,26 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Same-origin: split network-first (fresh content) vs cache-first (static assets)
   if (url.origin === self.location.origin) {
-    const isFreshContent =
-      url.pathname.endsWith('/trip-data.js') ||
-      url.pathname.endsWith('/index.html') ||
-      url.pathname === '/' ||
-      url.pathname.endsWith('/manifest.webmanifest');
-    if (isFreshContent) {
+    const path = url.pathname;
+    // HTML / manifest: 常に最新を取りに行く
+    if (path.endsWith('/index.html') || path.endsWith('/') || path.endsWith('/manifest.webmanifest')) {
       event.respondWith(networkFirst(request, RUNTIME));
-    } else {
-      event.respondWith(cacheFirst(request, RUNTIME));
+      return;
     }
+    // CSS / JS: 即表示 + 裏で更新(デザイン刷新が確実に届く)
+    if (path.endsWith('.css') || path.endsWith('.js')) {
+      event.respondWith(staleWhileRevalidate(request, RUNTIME));
+      return;
+    }
+    // その他(画像・アイコンなど): cache-first
+    event.respondWith(cacheFirst(request, RUNTIME));
     return;
   }
 });
 
 function cacheFirst(request, cacheName) {
-  // ignoreSearch so cache-busted URLs (foo.js?v=…) still match the
-  // query-less precache entries, keeping offline mode reliable.
-  return caches.match(request, { ignoreSearch: true }).then((cached) => {
+  return caches.match(request).then((cached) => {
     if (cached) return cached;
     return fetch(request).then((response) => {
       if (response && response.status === 200 && response.type === 'basic') {
@@ -104,7 +103,7 @@ function networkFirst(request, cacheName) {
       caches.open(cacheName).then((cache) => cache.put(request, clone));
     }
     return response;
-  }).catch(() => caches.match(request, { ignoreSearch: true }));
+  }).catch(() => caches.match(request));
 }
 
 function staleWhileRevalidate(request, cacheName) {

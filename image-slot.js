@@ -18,7 +18,8 @@
   }
 
   function saveStore() {
-    try { localStorage.setItem('cs_image_slots', JSON.stringify(slots)); } catch (e) {}
+    try { localStorage.setItem('cs_image_slots', JSON.stringify(slots)); return true; }
+    catch (e) { return false; }
   }
 
   function getSlot(id) {
@@ -28,11 +29,12 @@
   }
 
   function setSlot(id, val) {
-    if (!id) return;
+    if (!id) return true;
     if (val) slots[id] = val;
     else delete slots[id];
-    saveStore();
+    const ok = saveStore();
     subs.forEach(fn => fn());
+    return ok;
   }
 
   loadStore();
@@ -55,44 +57,59 @@
   }
 
   // ── Custom element ──────────────────────────────────────────────────────
+  // カテゴリ別のパステルグラデーション(空状態を「デザインされた枠」に見せる)
+  const VARIANTS = {
+    pink: 'linear-gradient(150deg,#ffe1ee,#ffc7dd)',
+    lav:  'linear-gradient(150deg,#ece2fb,#d8c7f6)',
+    blue: 'linear-gradient(150deg,#dceefb,#bfe0f4)',
+    cream:'linear-gradient(150deg,#fff0db,#ffe2bd)'
+  };
+
   const stylesheet =
     ':host{display:inline-block;position:relative;vertical-align:top;' +
-    '  font:13px/1.3 system-ui,-apple-system,sans-serif;color:rgba(0,0,0,.55);width:240px;height:160px}' +
-    '.frame{position:absolute;inset:0;overflow:hidden;background:rgba(0,0,0,.04)}' +
-    '.frame img{position:absolute;max-width:none;transform:translate(-50%,-50%);' +
+    '  font:13px/1.4 "Zen Maru Gothic",system-ui,-apple-system,sans-serif;color:#7d6a75;width:240px;height:160px}' +
+    '.frame{position:absolute;inset:0;overflow:hidden;background:var(--ph,linear-gradient(150deg,#ffe1ee,#ffc7dd))}' +
+    '.frame img{position:absolute;max-width:none;' +
     '  -webkit-user-drag:none;user-select:none;touch-action:none;object-fit:cover;' +
     '  width:100%;height:100%;left:50%;top:50%;transform:translate(-50%,-50%)}' +
     '.empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;' +
-    '  justify-content:center;gap:6px;text-align:center;padding:12px;box-sizing:border-box;' +
+    '  justify-content:center;gap:5px;text-align:center;padding:10px;box-sizing:border-box;' +
     '  cursor:pointer;user-select:none}' +
-    '.empty svg{opacity:.45}' +
-    '.empty .cap{max-width:90%;font-weight:500;letter-spacing:.01em}' +
-    '.empty .sub{font-size:11px;color:rgba(0,0,0,.4)}' +
-    ':host([data-over]) .frame{outline:2px solid #ec3d7a;outline-offset:-2px;' +
-    '  background:rgba(236,61,122,.08)}' +
-    '.ring{position:absolute;inset:0;pointer-events:none;border:1.5px dashed rgba(0,0,0,.18);' +
-    '  transition:border-color .12s}' +
+    '.empty .bubble{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.7);' +
+    '  display:grid;place-items:center;color:#d6286e;box-shadow:0 2px 6px rgba(180,80,120,.18)}' +
+    '.empty .cap{max-width:92%;font-weight:700;color:#a35d7e;font-size:12px}' +
+    '.empty .sub{font-size:10px;color:#b083a0;font-weight:700;letter-spacing:.02em}' +
+    /* 小さい枠(ヒーロー写真など)では中身を縮め、見切れを防ぐ */
+    ':host([data-compact]) .empty{gap:2px;padding:5px}' +
+    ':host([data-compact]) .empty .bubble{width:26px;height:26px}' +
+    ':host([data-compact]) .empty .bubble svg{width:15px;height:15px}' +
+    ':host([data-compact]) .empty .cap{font-size:10px}' +
+    ':host([data-compact]) .empty .sub{display:none}' +
+    ':host([data-over]) .frame{outline:2px solid #ec3d7a;outline-offset:-2px}' +
+    '.ring{position:absolute;inset:0;pointer-events:none;border:1.5px dashed rgba(214,40,110,.30);' +
+    '  border-radius:inherit;transition:border-color .12s}' +
     ':host([data-over]) .ring{border-color:#ec3d7a}' +
     ':host([data-filled]) .ring{display:none}' +
-    '.ctl{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:6px;' +
+    '.ctl{position:absolute;right:6px;bottom:6px;' +
     '  display:flex;gap:5px;opacity:0;pointer-events:none;transition:opacity .12s;z-index:2;' +
     '  white-space:nowrap}' +
-    ':host([data-filled]:hover) .ctl{opacity:1;pointer-events:auto}' +
-    '.ctl button{appearance:none;border:0;border-radius:6px;padding:4px 9px;cursor:pointer;' +
-    '  background:rgba(0,0,0,.6);color:#fff;font:11px/1 system-ui,-apple-system,sans-serif}' +
-    '.ctl button:hover{background:rgba(0,0,0,.8)}' +
+    ':host([data-filled][data-show-ctl]) .ctl{opacity:1;pointer-events:auto}' +
+    '@media(hover:hover){:host([data-filled]:hover) .ctl{opacity:1;pointer-events:auto}}' +
+    '.ctl button{appearance:none;border:0;border-radius:14px;padding:5px 11px;cursor:pointer;' +
+    '  background:rgba(40,20,30,.62);color:#fff;font:11px/1 "Zen Maru Gothic",system-ui,sans-serif;font-weight:700}' +
+    '.ctl button:hover{background:rgba(40,20,30,.82)}' +
     '.err{position:absolute;left:8px;bottom:8px;right:8px;color:#b3261e;font-size:11px;' +
-    '  background:rgba(255,255,255,.85);padding:4px 6px;border-radius:5px;pointer-events:none}';
+    '  background:rgba(255,255,255,.9);padding:4px 6px;border-radius:5px;pointer-events:none}';
 
   const icon =
-    '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-    'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-    '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>' +
-    '<path d="m21 15-5-5L5 21"/></svg>';
+    '<span class="bubble"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+    '<rect x="3" y="6" width="18" height="14" rx="2.5"/><path d="m8.5 6 1.4-2.5h4.2L15.5 6"/>' +
+    '<circle cx="12" cy="13" r="3.2"/></svg></span>';
 
   class ImageSlot extends HTMLElement {
     static get observedAttributes() {
-      return ['shape', 'radius', 'mask', 'fit', 'position', 'placeholder', 'src', 'id'];
+      return ['shape', 'radius', 'mask', 'fit', 'position', 'placeholder', 'label', 'variant', 'src', 'id'];
     }
 
     constructor() {
@@ -104,7 +121,7 @@
         '  <img part="image" alt="" draggable="false" style="display:none">' +
         '  <div class="empty" part="empty">' + icon +
         '    <div class="cap"></div>' +
-        '    <div class="sub">タップして写真を追加</div></div>' +
+        '    <div class="sub">タップで写真を追加</div></div>' +
         '  <div class="ring" part="ring"></div>' +
         '</div>' +
         '<div class="ctl">' +
@@ -126,12 +143,19 @@
 
       this._empty.addEventListener('click', () => this._input.click());
       root.addEventListener('click', (e) => {
-        const act = e.target && e.target.getAttribute && e.target.getAttribute('data-act');
-        if (act === 'replace') { this._input.click(); }
-        if (act === 'clear') {
+        const act = e.target && e.target.closest && e.target.closest('[data-act]');
+        const action = act && act.getAttribute('data-act');
+        if (action === 'replace') { this._input.click(); return; }
+        if (action === 'clear') {
           this._gen++;
+          this.removeAttribute('data-show-ctl');
           if (this.id) setSlot(this.id, null);
           else { this._local = null; this._render(); }
+          return;
+        }
+        // 写真が入っている状態でタップしたら操作ボタンを表示/非表示(モバイル向け)
+        if (this.hasAttribute('data-filled')) {
+          this.toggleAttribute('data-show-ctl');
         }
       });
       this._input.addEventListener('change', () => {
@@ -192,8 +216,10 @@
         const url = await toDataUrl(file, w);
         if (gen !== this._gen) return;
         const val = { u: url };
-        if (this.id) setSlot(this.id, val);
-        else { this._local = val; this._render(); }
+        if (this.id) {
+          const ok = setSlot(this.id, val);
+          if (!ok) this._setError('写真が大きすぎて保存できませんでした。');
+        } else { this._local = val; this._render(); }
       } catch (err) {
         if (gen !== this._gen) return;
         this._setError('画像を読み込めませんでした。');
@@ -224,11 +250,19 @@
       this._frame.style.clipPath = mask || '';
       this._ring.style.borderRadius = mask ? '' : radius;
 
+      // カテゴリ別グラデーション(空状態のデザイン)
+      const variant = (this.getAttribute('variant') || 'pink').toLowerCase();
+      this._frame.style.setProperty('--ph', VARIANTS[variant] || VARIANTS.pink);
+
+      // 小さい枠ではコンパクト表示に切り替え(見切れ防止)
+      const h = this.clientHeight || 0;
+      if (h > 0) this.toggleAttribute('data-compact', h < 92);
+
       const stored = this.id ? getSlot(this.id) : this._local;
       const url = (stored && stored.u && /^data:image\//i.test(stored.u) ? stored.u : null)
                   || this.getAttribute('src') || '';
 
-      this._cap.textContent = this.getAttribute('placeholder') || 'Drop an image';
+      this._cap.textContent = this.getAttribute('label') || this.getAttribute('placeholder') || '写真';
 
       if (url) {
         if (this._img.getAttribute('src') !== url) this._img.src = url;
